@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Art of Storytelling — Notes</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ink: #1a1208;
+    --parchment: #f5f0e8;
+    --cream: #faf7f2;
+    --gold: #c9a84c;
+    --gold-light: #e8d5a3;
+    --rust: #8b3a2a;
+    --forest: #2d4a3e;
+    --accent: #5c3d2e;
+    --muted: #7a6f5e;
+    --border: rgba(201,168,76,0.3);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--ink);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.08) 0%, transparent 70%),
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(201,168,76,0.04) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(201,168,76,0.02) 40px);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.8;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 9vw, 7rem);
+    font-weight: 900;
+    color: var(--parchment);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    animation: fadeUp 0.8s 0.15s ease both;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    margin-top: 1.5rem;
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: rgba(245,240,232,0.55);
+    max-width: 480px;
+    line-height: 1.7;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .hero-divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 2.5rem auto 0;
+    animation: fadeUp 0.8s 0.45s ease both;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: rgba(201,168,76,0.45);
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes bounce {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50%      { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ── MAIN CONTENT ── */
+  main {
+    background: var(--cream);
+    position: relative;
+  }
+
+  /* ornamental top edge */
+  main::before {
+    content: '';
+    display: block;
+    height: 6px;
+    background: linear-gradient(90deg, var(--rust), var(--gold), var(--forest), var(--gold), var(--rust));
+  }
+
+  /* ── NAV TABS ── */
+  .nav-tabs {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250,247,242,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    padding: 0 1rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+
+  .tab-btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: none;
+    border: none;
+    padding: 1rem 1.4rem;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .tab-btn:hover, .tab-btn.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.1;
+    margin-bottom: 2.5rem;
+  }
+
+  /* ── DEFINITION CARD ── */
+  .def-card {
+    background: var(--parchment);
+    border-left: 3px solid var(--gold);
+    padding: 1.6rem 2rem;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  .def-card p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--accent);
+  }
+  .def-card strong { color: var(--ink); }
+
+  /* ── GRID ── */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+  }
+
+  .card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(26,18,8,0.08);
+  }
+  .card-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    margin-bottom: 0.9rem;
+  }
+  .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+  .card p {
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+
+  .bg-rust  { background: rgba(139,58,42,0.12); color: var(--rust); }
+  .bg-gold  { background: rgba(201,168,76,0.15); color: #8a6a10; }
+  .bg-forest{ background: rgba(45,74,62,0.12);  color: var(--forest); }
+  .bg-blue  { background: rgba(50,80,120,0.12); color: #32507a; }
+  .bg-purple{ background: rgba(90,50,120,0.12); color: #5a3278; }
+
+  /* ── QUOTE BLOCK ── */
+  .quote-block {
+    margin: 3rem 0;
+    padding: 2.5rem;
+    background: var(--ink);
+    border-radius: 12px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .quote-block::before {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 10rem;
+    color: rgba(201,168,76,0.08);
+    line-height: 1;
+    pointer-events: none;
+  }
+  .quote-block blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.3rem, 3vw, 1.9rem);
+    font-style: italic;
+    color: var(--gold-light);
+    line-height: 1.55;
+    position: relative;
+    z-index: 1;
+  }
+  .quote-block cite {
+    display: block;
+    margin-top: 1rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: rgba(201,168,76,0.5);
+    font-style: normal;
+  }
+
+  /* ── TIMELINE (Spider-Man) ── */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+    margin-top: 2rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.5rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--gold), var(--rust), var(--forest));
+  }
+  .tl-item {
+    position: relative;
+    margin-bottom: 2rem;
+    padding-left: 1.5rem;
+    opacity: 0;
+    transform: translateX(-16px);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+  .tl-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .tl-dot {
+    position: absolute;
+    left: -1.75rem;
+    top: 0.3rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    background: var(--cream);
+  }
+  .tl-step {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.2rem;
+  }
+  .tl-item h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+  .tl-item p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── PREMISE SECTION ── */
+  .premise-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  @media (max-width: 600px) { .premise-grid { grid-template-columns: 1fr; } }
+
+  .premise-box {
+    padding: 1.6rem;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+  .premise-box.dark { background: var(--ink); color: var(--parchment); }
+  .premise-box.light { background: var(--parchment); }
+  .premise-box h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+  }
+  .premise-box.dark h4 { color: var(--gold); }
+  .premise-box.light h4 { color: var(--ink); }
+  .premise-box p { font-size: 0.88rem; line-height: 1.65; color: var(--muted); }
+  .premise-box.dark p { color: rgba(245,240,232,0.6); }
+
+  /* ── TAG LIST ── */
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  .tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    background: #fff;
+  }
+
+  /* ── CHARACTER TABLE ── */
+  .char-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    font-size: 0.88rem;
+  }
+  .char-table th {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: left;
+    padding: 0.75rem 1rem;
+    border-bottom: 2px solid var(--border);
+  }
+  .char-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--accent);
+    line-height: 1.5;
+    vertical-align: top;
+  }
+  .char-table tr:last-child td { border-bottom: none; }
+  .char-table tr:hover td { background: var(--parchment); }
+
+  /* ── CONFLICT TYPES ── */
+  .conflict-row {
+    display: flex;
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .conflict-pill {
+    flex: 1;
+    min-width: 160px;
+    background: var(--parchment);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem;
+    text-align: center;
+  }
+  .conflict-pill .emoji { font-size: 1.6rem; margin-bottom: 0.5rem; }
+  .conflict-pill h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+  .conflict-pill p { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: rgba(245,240,232,0.35);
+    text-align: center;
+    padding: 3rem 2rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+  }
+  footer span { color: var(--gold); }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">Technical Communication Notes</p>
+  <h1>Art of <em>Storytelling</em></h1>
+  <p class="hero-sub">A complete guide to foreshadowing, conflict, premise, character, plot, and environment — the building blocks of every great story.</p>
+  <div class="hero-divider"></div>
+  <p class="scroll-hint">↓ scroll</p>
+</section>
+
+<main>
+  <!-- NAV -->
+  <nav class="nav-tabs" id="navTabs">
+    <button class="tab-btn active" onclick="scrollTo('foreshadowing')">Foreshadowing</button>
+    <button class="tab-btn" onclick="scrollTo('conflict')">Conflict</button>
+    <button class="tab-btn" onclick="scrollTo('premise')">Premise</button>
+    <button class="tab-btn" onclick="scrollTo('character')">Character</button>
+    <button class="tab-btn" onclick="scrollTo('plot')">Plot</button>
+    <button class="tab-btn" onclick="scrollTo('environment')">Environment</button>
+    <button class="tab-btn" onclick="scrollTo('example')">Example</button>
+  </nav>
+
+  <!-- 1. FORESHADOWING -->
+  <section class="section reveal" id="foreshadowing">
+    <p class="section-label">01 — Concept</p>
+    <h2 class="section-title">Foreshadowing</h2>
+    <div class="def-card">
+      <p><strong>Foreshadowing</strong> is a literary technique that <strong>promises</strong, hints, or signals future events. It implies something is going to happen — creating tension, dramatic irony, and dramatic suspense that keeps the audience engaged.</p>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-icon bg-rust">⚡</div>
+        <h3>Tension</h3>
+        <p>Builds emotional unease and anticipation. The audience senses danger before it arrives, making the payoff more powerful.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-gold">🎭</div>
+        <h3>Dramatic Irony</h3>
+        <p>The audience knows something the character doesn't. This gap in knowledge creates deep emotional investment.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-forest">🎪</div>
+        <h3>Dramatic Suspense</h3>
+        <p>The slow burn of knowing something is coming. Keeps readers/viewers on edge throughout the narrative.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-blue">🔮</div>
+        <h3>Point of Attack</h3>
+        <p>Where the story begins — the moment of greatest conflict or interest. Everything builds from this entry point.</p>
+      </div>
+    </div>
+
+    <div class="def-card" style="margin-top:2rem;">
+      <p><strong>Inciting Incident / Catalyst</strong> — The event that sets the plot in motion. It represents the <em>central conflict</em> of the story and should be shown through character actions and clear narrative purpose.</p>
+    </div>
+  </section>
+
+  <!-- 2. CONFLICT -->
+  <section class="section reveal" id="conflict">
+    <p class="section-label">02 — Concept</p>
+    <h2 class="section-title">Conflict</h2>
+    <div class="def-card">
+      <p><strong>Conflict</strong> is what drives narrative forward. It is <em>gradual movements</em> that involve emotional change in characters — sudden sharp charges that reveal <strong>personality</strong>, vulnerability, and growth. All conflict leads to a conclusion.</p>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif; font-size:1.3rem; color:var(--ink); margin-bottom:1rem; margin-top:2rem;">Types of Conflict</h3>
+    <div class="conflict-row">
+      <div class="conflict-pill">
+        <div class="emoji">⚔️</div>
+        <h4>Cause & Effect</h4>
+        <p>Actions ripple through the narrative, creating consequences the character must face</p>
+      </div>
+      <div class="conflict-pill">
+        <div class="emoji">🧠</div>
+        <h4>Internal</h4>
+        <p>The character's inner struggle — moral dilemmas, fear, self-doubt, hidden desires</p>
+      </div>
+      <div class="conflict-pill">
+        <div class="emoji">🌍</div>
+        <h4>External</h4>
+        <p>Character vs. society, environment, another person, or supernatural forces</p>
+      </div>
+      <div class="conflict-pill">
+        <div class="emoji">⏳</div>
+        <h4>Tragic Flaw</h4>
+        <p>An innate weakness or quality of character that eventually leads to their downfall</p>
+      </div>
+    </div>
+
+    <div class="def-card" style="margin-top:2rem;">
+      <p><strong>Origin of Action</strong> — Action is an expression of the character's nature shaped by various forces and conditions. A character who stands alone with <em>no motivation</em> is equally a strong and compelling contradiction.</p>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif; font-size:1.3rem; color:var(--ink); margin:2rem 0 1rem;">Story Structure through Conflict</h3>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-icon bg-rust">📖</div>
+        <h3>Plays through Climaxes</h3>
+        <p>Stories develop through alternating climaxes — ensuring the narrative establishes and maintains flow through scenes and chapters.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-forest">🎬</div>
+        <h3>Chapter Summary</h3>
+        <p>Obligatory scene: the same chapter plays out — yet there is always something to explore in the next moment of conflict.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. PREMISE -->
+  <section class="section reveal" id="premise">
+    <p class="section-label">03 — Concept</p>
+    <h2 class="section-title">Premise</h2>
+    <div class="def-card">
+      <p>A <strong>Premise</strong> is a short, clear statement that expresses what the story is really about. It is not just the plot, but the <em>underlying truth</em> it is proving — a proposition stated or assumed as a basis of argument leading to a conclusion.</p>
+    </div>
+
+    <div class="premise-grid">
+      <div class="premise-box dark">
+        <h4>What Premise Does</h4>
+        <p>Expresses the core idea. Stated or proved. Acts as the spine of the entire narrative — every scene should connect back to it.</p>
+      </div>
+      <div class="premise-box light">
+        <h4>Example Premises</h4>
+        <p>"Greed leads to self-destruction."<br/><br/>"Blind ambition destroys friendship."<br/><br/>"Love conquers all."</p>
+      </div>
+    </div>
+
+    <div class="def-card" style="margin-top:2rem;">
+      <p><strong>Good Authorship</strong> — Authors ensure that every climax and scene <strong>does not put unnecessary emphasis on the primary</strong>. The focus should remain on the premise — never shading away from it.</p>
+    </div>
+
+    <div style="margin-top:2rem;">
+      <p style="font-family:'Playfair Display',serif; font-size:1.05rem; color:var(--accent); font-style:italic; margin-bottom:1rem;">Related structural concepts:</p>
+      <div class="tag-list">
+        <span class="tag">Antithesis</span>
+        <span class="tag">Synthesis</span>
+        <span class="tag">Thesis</span>
+        <span class="tag">Dialectical Approach</span>
+        <span class="tag">Initial Standing Point</span>
+        <span class="tag">Contradicting Situation</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. CHARACTER -->
+  <section class="section reveal" id="character">
+    <p class="section-label">04 — Concept</p>
+    <h2 class="section-title">Character</h2>
+    <div class="def-card">
+      <p><strong>Characterisation</strong> is the organisation of the character's personality. Good characterisation portrays and conveys character through <strong>conflicts and challenges</strong> — showing how they think, feel, and evolve. Characters must be consistently portrayed.</p>
+    </div>
+
+    <table class="char-table">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Definition</th>
+          <th>Role in Story</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Static Character</strong></td>
+          <td>Does not change. Remains the same throughout the narrative.</td>
+          <td>Often a supporting figure. Their consistency highlights change in others.</td>
+        </tr>
+        <tr>
+          <td><strong>Dynamic Character</strong></td>
+          <td>Undergoes significant internal or external change over the course of the story.</td>
+          <td>Usually the protagonist. Their journey IS the story.</td>
+        </tr>
+        <tr>
+          <td><strong>Protagonist</strong></td>
+          <td>The central character the audience follows.</td>
+          <td>Faces the core conflict; embodies the premise.</td>
+        </tr>
+        <tr>
+          <td><strong>Antagonist</strong></td>
+          <td>The opposing force — not necessarily evil, just oppositional.</td>
+          <td>Creates conflict. An antithesis: a person who follows one thing but believes another.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="def-card" style="margin-top:2rem;">
+      <p><strong>Character Growth</strong> — Characters grow through conflicts and choices. They may involve <em>complex types</em> — combining static and dynamic qualities — introducing slowly increasing conflict that motivates development and disclosure of their true nature.</p>
+    </div>
+
+    <div class="grid-2" style="margin-top:1.5rem;">
+      <div class="card">
+        <div class="card-icon bg-purple">🎭</div>
+        <h3>Action & Motivation</h3>
+        <p>Actions arise from the character's nature. Their past, fears, desires, and beliefs all shape the choices they make under pressure.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-gold">⚖️</div>
+        <h3>Conflict → Development</h3>
+        <p>The antagonist's actions lead to the character's development. Conflict is the furnace in which character is forged.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. PLOT -->
+  <section class="section reveal" id="plot">
+    <p class="section-label">05 — Concept</p>
+    <h2 class="section-title">Plot</h2>
+    <div class="def-card">
+      <p><strong>Plot vs Character</strong> — Plot is a <em>chain of events</em>, but it is always the character who drives it. Characters plotting their own story define narrative scenarios and actions. The most important thing is that characters <strong>transcend the story's premise</strong>.</p>
+    </div>
+
+    <div class="def-card">
+      <p><strong>Pivotal Characters</strong> — Protagonist or antagonist propels the narrative forward. They are <em>fundamentally</em> bound to establish the central conflict. They are equally <strong>strong and compelling</strong> — creating a story arc that is genuinely satisfying.</p>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif; font-size:1.3rem; color:var(--ink); margin:2rem 0 1rem;">Plot & Character Relationship</h3>
+    <div class="conflict-row">
+      <div class="conflict-pill">
+        <div class="emoji">📌</div>
+        <h4>Plot defines Character</h4>
+        <p>Events reveal who someone truly is under pressure</p>
+      </div>
+      <div class="conflict-pill">
+        <div class="emoji">🧩</div>
+        <h4>Character defines Plot</h4>
+        <p>A character's choices and desires shape the direction of events</p>
+      </div>
+      <div class="conflict-pill">
+        <div class="emoji">🔄</div>
+        <h4>Both are inseparable</h4>
+        <p>Great stories weave character and plot so tightly they become one</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. ENVIRONMENT -->
+  <section class="section reveal" id="environment">
+    <p class="section-label">06 — Concept</p>
+    <h2 class="section-title">Environment</h2>
+    <div class="def-card">
+      <p><strong>Environment</strong> influences characters in widespread and sometimes unexpected ways. Social factors, personality, and upbringing — even political and economic factors — all shape a character's individual <strong>perspective and decisions</strong>.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-icon bg-forest">🌏</div>
+        <h3>Social Factors</h3>
+        <p>Class, culture, community pressure, and relationships all influence how a character thinks and behaves in key moments.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-blue">🏛️</div>
+        <h3>Political & Economic</h3>
+        <p>The world's systems — poverty, power, war — create the external conditions that force characters into impossible choices.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-rust">🎓</div>
+        <h3>Upbringing & Origin</h3>
+        <p>Where a character comes from shapes their worldview. Their origin story is part of their present identity and future arc.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon bg-gold">🧬</div>
+        <h3>Individual Perspective</h3>
+        <p>Each character filters the world uniquely. Two people in the same environment can have completely different reactions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. EXAMPLE: SPIDER-MAN -->
+  <section class="section reveal" id="example">
+    <p class="section-label">07 — Case Study</p>
+    <h2 class="section-title">Example: Spider-Man</h2>
+    <p style="color:var(--muted); font-size:0.95rem; margin-bottom:2.5rem; line-height:1.7;">Spider-Man is the perfect illustration of all storytelling principles working together. Every concept from these notes is present in this one story.</p>
+
+    <div class="timeline" id="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <p class="tl-step">Act I — Foreshadowing</p>
+        <h4>Getting Powers</h4>
+        <p>Peter Parker is bitten by a radioactive spider. The premise is set — with great power comes great responsibility — but he doesn't know it yet. This is the inciting incident.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <p class="tl-step">Act II — Conflict</p>
+        <h4>Uncle Ben's Death</h4>
+        <p>Peter's choice to do nothing triggers the greatest tragedy of his life. This is cause and effect in its most devastating form — his inaction becomes the engine of the story.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <p class="tl-step">Act III — Resolution</p>
+        <h4>The Final Fight</h4>
+        <p>Everything converges. Character, conflict, environment, and premise all collide in a climax that proves the story's central truth.</p>
+      </div>
+    </div>
+
+    <div class="quote-block">
+      <blockquote>With great power comes great responsibility.</blockquote>
+      <cite>— Spider-Man / The Premise of the Story</cite>
+    </div>
+
+    <div class="def-card">
+      <p>This single line <strong>is</strong> the premise. Every event — the spider bite, Uncle Ben's death, the final fight — all lead to proving this one statement. That is how foreshadowing, conflict, character, plot, and environment work in perfect harmony.</p>
+    </div>
+
+    <p style="margin-top:2rem; font-size:0.88rem; color:var(--muted); font-style:italic; text-align:center;">
+      "Only those people who are <strong>familiar with mortality</strong> feel the desire to leave a mark. I feel death is a small price to pay for immortality."
+    </p>
+  </section>
+</main>
+
+<footer>
+  <p>Notes compiled for <span>Technical Communication</span> · RGPV University · <span>Art of Storytelling</span></p>
+</footer>
+
+<script>
+  // Scroll to section
+  function scrollTo(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Intersection Observer for reveal animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  document.querySelectorAll('.tl-item').forEach((el, i) => {
+    setTimeout(() => observer.observe(el), i * 100);
+  });
+
+  // Active tab on scroll
+  const sections = ['foreshadowing','conflict','premise','character','plot','environment','example'];
+  const tabs = document.querySelectorAll('.tab-btn');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && window.scrollY >= el.offsetTop - 120) current = id;
+    });
+    tabs.forEach((tab, i) => {
+      tab.classList.toggle('active', sections[i] === current);
+    });
+  });
+</script>
+</body>
+</html>
