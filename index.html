@@ -9,26 +9,20 @@
   :root {
     --red: #e63030;
     --orange: #ff6b00;
-    --white: #ffffff;
     --off-white: #f5f0e8;
     --dark: #0f0c0c;
     --darker: #0a0a0a;
-    --card-dark: #0d0d12;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   body {
     background: var(--darker);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: clamp(32px, 5vw, 60px);
-    padding: clamp(24px, 5vw, 60px) clamp(16px, 4vw, 20px);
+    gap: 32px;
+    padding: 24px 16px;
     font-family: 'DM Mono', monospace;
   }
-
-  /* ── CARD BASE ── */
   .card {
     width: 100%;
     max-width: 1080px;
@@ -38,511 +32,207 @@
     flex-direction: column;
     justify-content: center;
   }
-
   .watermark {
     position: absolute;
-    bottom: clamp(16px, 3vw, 36px);
-    right: clamp(20px, 4vw, 44px);
+    bottom: 18px; right: 20px;
     font-family: 'DM Mono', monospace;
-    font-size: clamp(9px, 1.2vw, 13px);
+    font-size: 10px;
     letter-spacing: 3px;
     text-transform: uppercase;
-    opacity: 0.45;
+    opacity: 0.4;
     color: #fff;
   }
-
-  /* ════════════════════════
-     CARD 1 — SETUP & PAYOFF
-  ════════════════════════ */
-  .card1 {
-    background: var(--dark);
-    border: 1px solid #1a1a1a;
-    padding: clamp(32px, 6vw, 80px);
-    min-height: clamp(480px, 80vw, 1080px);
-  }
-
-  .card1::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--red), var(--orange), var(--red));
-  }
-
+  .content { position: relative; z-index: 1; }
   .grid-bg {
     position: absolute; inset: 0;
     background-image:
       linear-gradient(rgba(230,48,48,0.03) 1px, transparent 1px),
       linear-gradient(90deg, rgba(230,48,48,0.03) 1px, transparent 1px);
-    background-size: clamp(40px, 6vw, 60px) clamp(40px, 6vw, 60px);
+    background-size: 50px 50px;
     pointer-events: none;
   }
 
+  /* CARD 1 */
+  .card1 { background: var(--dark); border: 1px solid #1a1a1a; padding: 36px 22px 40px; }
+  .card1::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--red), var(--orange), var(--red));
+  }
   .card1 .big-num {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(100px, 18vw, 200px);
-    line-height: 1;
-    color: #1a0808;
-    position: absolute;
-    top: 20px; right: clamp(16px, 4vw, 60px);
-    letter-spacing: -4px;
-    user-select: none;
-    pointer-events: none;
+    font-size: 110px; line-height: 1; color: #1a0808;
+    position: absolute; top: 14px; right: 14px;
+    letter-spacing: -4px; user-select: none; pointer-events: none;
   }
-
-  .content { position: relative; z-index: 1; }
-
   .label {
     font-family: 'DM Mono', monospace;
-    font-size: clamp(9px, 1.3vw, 11px);
-    letter-spacing: clamp(3px, 1vw, 6px);
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: clamp(10px, 2vw, 18px);
+    font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--red); margin-bottom: 12px;
   }
-
   .card1 h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(38px, 7vw, 78px);
-    font-weight: 900;
-    color: #fff;
-    line-height: 1.05;
-    margin-bottom: clamp(28px, 5vw, 50px);
+    font-size: 40px; font-weight: 900; color: #fff; line-height: 1.05;
+    margin-bottom: 20px;
   }
-
   .card1 h1 span { color: var(--red); font-style: italic; }
-
-  .divider {
-    width: clamp(32px, 5vw, 52px);
-    height: 3px;
-    background: var(--red);
-    margin-bottom: clamp(28px, 5vw, 46px);
-  }
-
-  .two-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(14px, 3vw, 28px);
-    margin-bottom: clamp(28px, 5vw, 44px);
-  }
-
-  @media (max-width: 480px) {
-    .two-col { grid-template-columns: 1fr; }
-  }
-
-  .box {
-    border: 1px solid #2a2a2a;
-    padding: clamp(16px, 3vw, 28px);
-    background: #0d0b0b;
-  }
-
+  .divider { width: 38px; height: 3px; background: var(--red); margin-bottom: 24px; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+  .box { border: 1px solid #2a2a2a; padding: 16px; background: #0d0b0b; }
   .box-label {
     font-family: 'DM Mono', monospace;
-    font-size: clamp(8px, 1.2vw, 10px);
-    letter-spacing: clamp(3px, 1vw, 5px);
-    color: var(--red);
-    text-transform: uppercase;
-    margin-bottom: clamp(8px, 1.5vw, 14px);
+    font-size: 9px; letter-spacing: 4px; color: var(--red);
+    text-transform: uppercase; margin-bottom: 8px;
   }
-
-  .box p {
-    font-family: 'DM Mono', monospace;
-    font-size: clamp(11px, 1.5vw, 14px);
-    line-height: 1.8;
-    color: #aaa;
-  }
-
+  .box p { font-family: 'DM Mono', monospace; font-size: 12px; line-height: 1.8; color: #aaa; }
   .box p strong { color: #fff; }
-
-  .rule {
-    border: none;
-    border-top: 1px solid #1e1e1e;
-    margin: clamp(20px, 4vw, 36px) 0;
-  }
-
-  .insight {
-    display: flex;
-    align-items: flex-start;
-    gap: clamp(10px, 2vw, 18px);
-  }
-
-  .insight .arrow {
-    font-size: clamp(16px, 2.5vw, 24px);
-    color: var(--red);
-    margin-top: 2px;
-    flex-shrink: 0;
-  }
-
-  .insight p {
-    font-family: 'DM Mono', monospace;
-    font-size: clamp(11px, 1.5vw, 15px);
-    line-height: 1.8;
-    color: #ccc;
-  }
-
+  .rule { border: none; border-top: 1px solid #1e1e1e; margin: 22px 0; }
+  .insight { display: flex; align-items: flex-start; gap: 12px; }
+  .insight .arrow { font-size: 18px; color: var(--red); margin-top: 2px; flex-shrink: 0; }
+  .insight p { font-family: 'DM Mono', monospace; font-size: 12px; line-height: 1.8; color: #ccc; }
   .insight p strong { color: #fff; }
-
-  .sub-rule { margin-top: clamp(24px, 4vw, 40px); }
-
+  .sub-rule { margin-top: 24px; }
   .label2 {
     font-family: 'DM Mono', monospace;
-    font-size: clamp(8px, 1.2vw, 10px);
-    letter-spacing: clamp(3px, 1vw, 5px);
-    color: var(--orange);
-    text-transform: uppercase;
-    margin-bottom: clamp(8px, 1.5vw, 10px);
+    font-size: 9px; letter-spacing: 4px; color: var(--orange);
+    text-transform: uppercase; margin-bottom: 8px;
   }
-
   .sub-rule h2 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(22px, 4vw, 38px);
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: clamp(10px, 2vw, 14px);
+    font-size: 24px; font-weight: 700; color: #fff; margin-bottom: 10px;
   }
-
-  .sub-rule p {
-    font-family: 'DM Mono', monospace;
-    font-size: clamp(11px, 1.5vw, 14px);
-    line-height: 1.8;
-    color: #aaa;
-  }
-
+  .sub-rule p { font-family: 'DM Mono', monospace; font-size: 12px; line-height: 1.8; color: #aaa; }
   .example-tag {
-    display: inline-block;
-    margin-top: clamp(12px, 2vw, 18px);
-    padding: clamp(8px, 1.5vw, 10px) clamp(14px, 2.5vw, 20px);
-    border: 1px solid var(--orange);
-    font-family: 'DM Mono', monospace;
-    font-size: clamp(10px, 1.4vw, 13px);
-    color: var(--orange);
-    line-height: 1.6;
+    display: inline-block; margin-top: 14px;
+    padding: 9px 14px; border: 1px solid var(--orange);
+    font-family: 'DM Mono', monospace; font-size: 11px; color: var(--orange); line-height: 1.6;
   }
 
-  /* ════════════════════════
-     CARD 2 — HOW TO WRITE DRAMA
-  ════════════════════════ */
-  .card2 {
-    background: var(--off-white);
-    padding: clamp(32px, 6vw, 80px);
-    min-height: clamp(480px, 80vw, 1080px);
-  }
-
+  /* CARD 2 */
+  .card2 { background: var(--off-white); padding: 36px 22px 44px; }
   .card2::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0;
-    width: 100%; height: 6px;
-    background: #1a1a1a;
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 100%; height: 6px; background: #1a1a1a;
   }
-
   .card2 .stamp {
-    position: absolute;
-    top: clamp(30px, 5vw, 64px);
-    right: clamp(20px, 5vw, 72px);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(48px, 9vw, 90px);
-    font-weight: 900;
-    color: var(--red);
-    opacity: 0.08;
-    letter-spacing: 4px;
-    transform: rotate(-8deg);
-    user-select: none;
+    position: absolute; top: 24px; right: 16px;
+    font-family: 'Bebas Neue', sans-serif; font-size: 56px;
+    color: var(--red); opacity: 0.08; letter-spacing: 4px;
+    transform: rotate(-8deg); user-select: none;
   }
-
-  .card2 .label {
-    font-family: 'DM Mono', monospace;
-    font-size: clamp(9px, 1.3vw, 10px);
-    letter-spacing: clamp(3px, 1vw, 6px);
-    text-transform: uppercase;
-    color: #666;
-    margin-bottom: clamp(10px, 2vw, 14px);
-  }
-
+  .card2 .label { font-size: 10px; letter-spacing: 4px; color: #666; margin-bottom: 10px; }
   .card2 h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(36px, 6.5vw, 68px);
-    font-weight: 900;
-    color: #1a1a1a;
-    line-height: 1.1;
+    font-size: 38px; font-weight: 900; color: #1a1a1a; line-height: 1.1;
   }
-
   .card2 h1 em { color: var(--red); }
-
-  .card2 .divider2 {
-    width: clamp(40px, 6vw, 60px);
-    height: 3px;
-    background: #1a1a1a;
-    margin: clamp(18px, 3vw, 28px) 0 clamp(28px, 5vw, 44px);
-  }
-
-  .method-block {
-    margin-bottom: clamp(22px, 4vw, 36px);
-    padding-left: clamp(16px, 3vw, 28px);
-    border-left: 3px solid #1a1a1a;
-  }
-
+  .card2 .divider2 { width: 40px; height: 3px; background: #1a1a1a; margin: 18px 0 24px; }
+  .method-block { margin-bottom: 22px; padding-left: 18px; border-left: 3px solid #1a1a1a; }
   .method-block .num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(32px, 5vw, 48px);
-    color: var(--red);
-    line-height: 1;
-    margin-bottom: 2px;
+    font-family: 'Bebas Neue', sans-serif; font-size: 34px;
+    color: var(--red); line-height: 1; margin-bottom: 2px;
   }
-
   .method-block h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(17px, 2.5vw, 24px);
-    font-weight: 700;
-    color: #1a1a1a;
-    margin-bottom: clamp(6px, 1.2vw, 10px);
+    font-family: 'Playfair Display', serif; font-size: 17px;
+    font-weight: 700; color: #1a1a1a; margin-bottom: 6px;
   }
-
-  .method-block p {
-    font-family: 'DM Mono', monospace;
-    font-size: clamp(10px, 1.4vw, 13px);
-    line-height: 1.85;
-    color: #555;
-  }
-
-  .three-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: clamp(10px, 2vw, 20px);
-    margin-top: clamp(20px, 4vw, 36px);
-  }
-
-  @media (max-width: 600px) {
-    .three-grid { grid-template-columns: 1fr; }
-  }
-
-  .mini-card {
-    background: #1a1a1a;
-    padding: clamp(14px, 2.5vw, 22px);
-  }
-
+  .method-block p { font-family: 'DM Mono', monospace; font-size: 12px; line-height: 1.85; color: #555; }
+  .three-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 18px; }
+  .mini-card { background: #1a1a1a; padding: 16px; }
   .mc-label {
-    font-family: 'DM Mono', monospace;
-    font-size: clamp(8px, 1.1vw, 9px);
-    letter-spacing: 4px;
-    color: var(--red);
-    text-transform: uppercase;
-    margin-bottom: clamp(6px, 1.2vw, 10px);
+    font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 4px;
+    color: var(--red); text-transform: uppercase; margin-bottom: 8px;
   }
-
-  .mini-card p {
-    font-family: 'DM Mono', monospace;
-    font-size: clamp(10px, 1.3vw, 12px);
-    line-height: 1.75;
-    color: #ccc;
-  }
-
+  .mini-card p { font-family: 'DM Mono', monospace; font-size: 11px; line-height: 1.75; color: #ccc; }
   .card2 .watermark { color: rgba(26,26,26,0.25); }
 
-  /* ════════════════════════
-     CARD 3 — SCREENPLAY FORMAT
-  ════════════════════════ */
+  /* CARD 3 */
   .card3 {
     background: linear-gradient(135deg, #0d0d12 0%, #12090d 100%);
-    padding: clamp(32px, 6vw, 80px);
-    border: 1px solid #1c1c2a;
-    min-height: clamp(480px, 80vw, 1080px);
+    padding: 36px 22px; border: 1px solid #1c1c2a;
   }
-
   .card3 .grid-bg {
     position: absolute; inset: 0;
     background-image:
       linear-gradient(rgba(230,48,48,0.04) 1px, transparent 1px),
       linear-gradient(90deg, rgba(230,48,48,0.04) 1px, transparent 1px);
-    background-size: clamp(40px, 6vw, 60px) clamp(40px, 6vw, 60px);
+    background-size: 50px 50px;
   }
-
-  .card3 .label {
-    font-family: 'DM Mono', monospace;
-    font-size: clamp(9px, 1.3vw, 10px);
-    letter-spacing: clamp(3px, 1vw, 6px);
-    color: var(--red);
-    text-transform: uppercase;
-    margin-bottom: clamp(10px, 2vw, 16px);
-  }
-
-  .card3 h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(38px, 7vw, 72px);
-    font-weight: 900;
-    color: #fff;
-    line-height: 1.05;
-  }
-
+  .card3 .label { font-size: 10px; letter-spacing: 4px; color: var(--red); text-transform: uppercase; margin-bottom: 12px; }
+  .card3 h1 { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 900; color: #fff; line-height: 1.05; }
   .card3 h1 span { color: var(--red); }
-
-  .card3 .divider {
-    width: clamp(32px, 5vw, 52px);
-    height: 3px;
-    background: var(--red);
-    margin: clamp(18px, 3vw, 28px) 0 clamp(28px, 5vw, 44px);
-  }
-
-  .format-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(14px, 3vw, 24px);
-    margin-bottom: clamp(14px, 3vw, 24px);
-  }
-
-  @media (max-width: 520px) {
-    .format-row { grid-template-columns: 1fr; }
-  }
-
-  .format-item { display: flex; gap: clamp(10px, 2vw, 18px); align-items: flex-start; }
-
-  .fi-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(36px, 6vw, 52px);
-    color: var(--red);
-    line-height: 1;
-    flex-shrink: 0;
-  }
-
-  .fi-body h4 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(14px, 2vw, 18px);
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 4px;
-    margin-top: 6px;
-  }
-
-  .fi-body p, .fi-body ul {
-    font-family: 'DM Mono', monospace;
-    font-size: clamp(10px, 1.4vw, 12px);
-    line-height: 1.8;
-    color: #888;
-  }
-
-  .fi-body ul { padding-left: 14px; }
-
+  .card3 .divider { width: 38px; height: 3px; background: var(--red); margin: 18px 0 24px; }
+  .format-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .format-item { display: flex; gap: 10px; align-items: flex-start; }
+  .fi-num { font-family: 'Bebas Neue', sans-serif; font-size: 38px; color: var(--red); line-height: 1; flex-shrink: 0; }
+  .fi-body h4 { font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 4px; margin-top: 5px; }
+  .fi-body p, .fi-body ul { font-family: 'DM Mono', monospace; font-size: 11px; line-height: 1.8; color: #888; }
+  .fi-body ul { padding-left: 12px; }
   .terminal-box {
-    margin-top: clamp(20px, 4vw, 32px);
-    border: 1px solid #2a2a3a;
-    background: #08080e;
-    padding: clamp(16px, 3vw, 28px) clamp(18px, 3.5vw, 32px);
-    font-family: 'DM Mono', monospace;
-    font-size: clamp(10px, 1.4vw, 13px);
-    color: #777;
-    line-height: 2;
+    margin-top: 18px; border: 1px solid #2a2a3a; background: #08080e;
+    padding: 16px 18px; font-family: 'DM Mono', monospace; font-size: 11px;
+    color: #777; line-height: 1.9; word-break: break-word;
   }
-
   .t-red { color: var(--red); }
   .t-white { color: #eee; }
-  .t-center { text-align: center; }
 
-  /* ════════════════════════
-     CARD 4 — MASTER RULES
-  ════════════════════════ */
-  .card4 {
-    background: #fff;
-    padding: clamp(32px, 6vw, 80px);
-    border-left: clamp(5px, 1vw, 10px) solid var(--red);
-    min-height: clamp(480px, 80vw, 1080px);
-  }
-
-  .card4 .label {
-    font-family: 'DM Mono', monospace;
-    font-size: clamp(9px, 1.3vw, 10px);
-    letter-spacing: clamp(3px, 1vw, 6px);
-    color: var(--red);
-    text-transform: uppercase;
-    margin-bottom: clamp(10px, 2vw, 16px);
-  }
-
+  /* CARD 4 */
+  .card4 { background: #fff; padding: 36px 22px; border-left: 6px solid var(--red); }
+  .card4 .label { font-size: 10px; letter-spacing: 4px; color: var(--red); text-transform: uppercase; margin-bottom: 12px; }
   .card4 h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(34px, 6vw, 66px);
-    font-weight: 900;
-    color: #0f0f0f;
-    line-height: 1.1;
-    margin-bottom: clamp(24px, 5vw, 46px);
+    font-family: 'Playfair Display', serif; font-size: 36px;
+    font-weight: 900; color: #0f0f0f; line-height: 1.1; margin-bottom: 24px;
   }
-
-  .rule-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    border-top: 1px solid #eee;
-    border-left: 1px solid #eee;
-  }
-
-  @media (max-width: 500px) {
-    .rule-list { grid-template-columns: 1fr; }
-    .rule-item { border-right: 1px solid #eee !important; }
-  }
-
+  .rule-list { display: grid; grid-template-columns: 1fr; border-top: 1px solid #eee; border-left: 1px solid #eee; }
   .rule-item {
-    display: flex;
-    align-items: flex-start;
-    gap: clamp(10px, 2vw, 14px);
-    padding: clamp(14px, 2.5vw, 22px) clamp(14px, 2.5vw, 22px);
-    border-bottom: 1px solid #eee;
-    border-right: 1px solid #eee;
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 14px 16px; border-bottom: 1px solid #eee; border-right: 1px solid #eee;
   }
-
-  .rule-item:nth-child(2n) { border-right: none; }
-
-  .rule-item .hash {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(20px, 3vw, 28px);
-    color: var(--red);
-    flex-shrink: 0;
-    line-height: 1;
-  }
-
-  .rule-item p {
-    font-family: 'DM Mono', monospace;
-    font-size: clamp(10px, 1.4vw, 13px);
-    line-height: 1.7;
-    color: #333;
-  }
-
+  .rule-item .hash { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--red); flex-shrink: 0; line-height: 1; }
+  .rule-item p { font-family: 'DM Mono', monospace; font-size: 12px; line-height: 1.7; color: #333; }
   .rule-item p strong { color: #0f0f0f; font-weight: 600; }
-
-  .bottom-bar {
-    margin-top: clamp(24px, 5vw, 40px);
-    display: flex;
-  }
-
-  .bbar-item {
-    flex: 1;
-    padding: clamp(14px, 3vw, 22px);
-    text-align: center;
-  }
-
+  .bottom-bar { margin-top: 24px; display: flex; }
+  .bbar-item { flex: 1; padding: 14px 6px; text-align: center; }
   .bbar-item:nth-child(1) { background: #0f0f0f; }
   .bbar-item:nth-child(2) { background: var(--red); }
   .bbar-item:nth-child(3) { background: #1a1a1a; }
-
-  .bi-label {
-    font-family: 'DM Mono', monospace;
-    font-size: clamp(7px, 1.1vw, 9px);
-    letter-spacing: 3px;
-    color: rgba(255,255,255,0.45);
-    text-transform: uppercase;
-    margin-bottom: 5px;
-  }
-
-  .bi-val {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(12px, 1.8vw, 17px);
-    font-weight: 700;
-    color: #fff;
-  }
-
+  .bi-label { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 2px; color: rgba(255,255,255,0.45); text-transform: uppercase; margin-bottom: 4px; }
+  .bi-val { font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 700; color: #fff; }
   .card4 .watermark { color: rgba(15,15,15,0.2); }
+
+  /* TABLET 600px+ */
+  @media (min-width: 600px) {
+    body { padding: 48px 24px; gap: 48px; }
+    .card1, .card2, .card3, .card4 { padding: 56px 48px; }
+    .card1 h1 { font-size: 58px; } .card2 h1 { font-size: 52px; }
+    .card3 h1 { font-size: 54px; } .card4 h1 { font-size: 50px; }
+    .card1 .big-num { font-size: 160px; right: 30px; }
+    .card2 .stamp { font-size: 72px; right: 44px; }
+    .sub-rule h2 { font-size: 30px; }
+    .three-grid { grid-template-columns: 1fr 1fr 1fr; }
+    .rule-list { grid-template-columns: 1fr 1fr; }
+    .rule-item:nth-child(2n) { border-right: none; }
+    .box p, .insight p, .sub-rule p, .method-block p, .terminal-box, .rule-item p { font-size: 13px; }
+  }
+
+  /* DESKTOP 900px+ */
+  @media (min-width: 900px) {
+    body { padding: 60px 20px; gap: 60px; }
+    .card1, .card2, .card3, .card4 { padding: 80px; }
+    .card1 h1 { font-size: 78px; } .card2 h1 { font-size: 68px; }
+    .card3 h1 { font-size: 72px; } .card4 h1 { font-size: 66px; }
+    .card1 .big-num { font-size: 200px; right: 60px; }
+    .card2 .stamp { font-size: 90px; right: 72px; }
+    .sub-rule h2 { font-size: 38px; }
+    .box p, .insight p, .sub-rule p, .method-block p, .terminal-box { font-size: 14px; }
+    .rule-item p { font-size: 13px; }
+    .fi-body h4 { font-size: 18px; } .fi-body p, .fi-body ul { font-size: 12px; }
+  }
 </style>
 </head>
 <body>
 
-<!-- CARD 1: SETUP & PAYOFF -->
+<!-- CARD 1 -->
 <div class="card card1">
   <div class="grid-bg"></div>
   <div class="big-num">01</div>
@@ -575,7 +265,7 @@
   <div class="watermark">Atif Khan</div>
 </div>
 
-<!-- CARD 2: HOW TO WRITE DRAMA -->
+<!-- CARD 2 -->
 <div class="card card2">
   <div class="stamp">DRAMA</div>
   <div class="content">
@@ -615,7 +305,7 @@
   <div class="watermark">Atif Khan</div>
 </div>
 
-<!-- CARD 3: SCREENPLAY FORMAT -->
+<!-- CARD 3 -->
 <div class="card card3">
   <div class="grid-bg"></div>
   <div class="content">
@@ -661,76 +351,37 @@
     <div class="terminal-box">
       <div class="t-red">EXT. COURTYARD – JOHN'S HOUSE – MORNING</div>
       <div class="t-white" style="margin-top:8px">Action Line: Always in present tense.</div>
-      <div style="color:#555">Will NOT show thoughts or internal emotions of characters.</div>
-      <div style="color:#555; font-style:italic">(Wrong: "His eyes were quietly trembling due to fear.")</div>
-      <div style="margin-top:14px; text-align:center; color:#ccc;">JOHN</div>
-      <div style="text-align:center; color:#888;">(Character dialogue — centered on page)</div>
-      <div style="margin-top:10px; text-align:center; color:#ccc;">JACOB</div>
-      <div style="text-align:center; color:#555;">(Response)</div>
+      <div style="color:#555">Will NOT show thoughts or internal emotions.</div>
+      <div style="color:#555;font-style:italic">(Wrong: "His eyes were quietly trembling due to fear.")</div>
+      <div style="margin-top:12px;text-align:center;color:#ccc">JOHN</div>
+      <div style="text-align:center;color:#888">(Character dialogue — centered on page)</div>
+      <div style="margin-top:8px;text-align:center;color:#ccc">JACOB</div>
+      <div style="text-align:center;color:#555">(Response)</div>
     </div>
   </div>
   <div class="watermark">Atif Khan</div>
 </div>
 
-<!-- CARD 4: MASTER RULES -->
+<!-- CARD 4 -->
 <div class="card card4">
   <div class="label">The Writer's Manifesto</div>
   <h1>Master Rules<br>of the Craft</h1>
   <div class="rule-list">
-    <div class="rule-item">
-      <div class="hash">#</div>
-      <p>Every scene must be <strong>building towards</strong> the next scene.</p>
-    </div>
-    <div class="rule-item">
-      <div class="hash">#</div>
-      <p>Be a conductor of audience emotions — bring <strong>contradictory emotions</strong> out of them.</p>
-    </div>
-    <div class="rule-item">
-      <div class="hash">#</div>
-      <p>Write your screenplay <strong>for the reader</strong> — it must be felt on the page.</p>
-    </div>
-    <div class="rule-item">
-      <div class="hash">#</div>
-      <p><strong>Be true to your characters.</strong> Let them make decisions you wouldn't.</p>
-    </div>
-    <div class="rule-item">
-      <div class="hash">#</div>
-      <p><strong>Have a vision.</strong> Make it authentic — then have the guts to share it.</p>
-    </div>
-    <div class="rule-item">
-      <div class="hash">#</div>
-      <p><strong>Write your characters first.</strong> Story must constantly unfold from them.</p>
-    </div>
-    <div class="rule-item">
-      <div class="hash">#</div>
-      <p>Treat suspense <strong>like a rubber band</strong> — stretch it, don't snap it too soon.</p>
-    </div>
-    <div class="rule-item">
-      <div class="hash">#</div>
-      <p>Give characters <strong>decisions &amp; consequences</strong> → Moral Choices.</p>
-    </div>
-    <div class="rule-item">
-      <div class="hash">#</div>
-      <p>Put clues — let your audience <strong>decide for themselves.</strong></p>
-    </div>
-    <div class="rule-item">
-      <div class="hash">#</div>
-      <p>Rule out morality to <strong>create interesting characters</strong> — complexity over virtue.</p>
-    </div>
+    <div class="rule-item"><div class="hash">#</div><p>Every scene must be <strong>building towards</strong> the next scene.</p></div>
+    <div class="rule-item"><div class="hash">#</div><p>Be a conductor of audience emotions — bring <strong>contradictory emotions</strong> out of them.</p></div>
+    <div class="rule-item"><div class="hash">#</div><p>Write your screenplay <strong>for the reader</strong> — it must be felt on the page.</p></div>
+    <div class="rule-item"><div class="hash">#</div><p><strong>Be true to your characters.</strong> Let them make decisions you wouldn't.</p></div>
+    <div class="rule-item"><div class="hash">#</div><p><strong>Have a vision.</strong> Make it authentic — then have the guts to share it.</p></div>
+    <div class="rule-item"><div class="hash">#</div><p><strong>Write your characters first.</strong> Story must constantly unfold from them.</p></div>
+    <div class="rule-item"><div class="hash">#</div><p>Treat suspense <strong>like a rubber band</strong> — stretch it, don't snap it too soon.</p></div>
+    <div class="rule-item"><div class="hash">#</div><p>Give characters <strong>decisions &amp; consequences</strong> → Moral Choices.</p></div>
+    <div class="rule-item"><div class="hash">#</div><p>Put clues — let your audience <strong>decide for themselves.</strong></p></div>
+    <div class="rule-item"><div class="hash">#</div><p>Rule out morality to <strong>create interesting characters</strong> — complexity over virtue.</p></div>
   </div>
   <div class="bottom-bar">
-    <div class="bbar-item">
-      <div class="bi-label">Principle</div>
-      <div class="bi-val">Be Authentic</div>
-    </div>
-    <div class="bbar-item">
-      <div class="bi-label">Core Goal</div>
-      <div class="bi-val">Tell the Truth</div>
-    </div>
-    <div class="bbar-item">
-      <div class="bi-label">Method</div>
-      <div class="bi-val">Character First</div>
-    </div>
+    <div class="bbar-item"><div class="bi-label">Principle</div><div class="bi-val">Be Authentic</div></div>
+    <div class="bbar-item"><div class="bi-label">Core Goal</div><div class="bi-val">Tell the Truth</div></div>
+    <div class="bbar-item"><div class="bi-label">Method</div><div class="bi-val">Character First</div></div>
   </div>
   <div class="watermark">Atif Khan</div>
 </div>
