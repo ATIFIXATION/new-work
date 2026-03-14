@@ -3,25 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Screenplay Notes newone</title>
+<title>Screenplay Notes — Atif Khan</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Mono:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --red: #e63030;
+    --orange: #ff6b00;
+    --white: #ffffff;
+    --off-white: #f5f0e8;
+    --dark: #0f0c0c;
+    --darker: #0a0a0a;
+    --card-dark: #0d0d12;
+  }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background: #0a0a0a;
+    background: var(--darker);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 60px;
-    padding: 60px 20px;
+    gap: clamp(32px, 5vw, 60px);
+    padding: clamp(24px, 5vw, 60px) clamp(16px, 4vw, 20px);
     font-family: 'DM Mono', monospace;
   }
 
   /* ── CARD BASE ── */
   .card {
-    width: 1080px;
-    min-height: 1080px;
+    width: 100%;
+    max-width: 1080px;
     position: relative;
     overflow: hidden;
     display: flex;
@@ -29,16 +39,15 @@
     justify-content: center;
   }
 
-  /* ── WATERMARK ── */
   .watermark {
     position: absolute;
-    bottom: 36px;
-    right: 44px;
+    bottom: clamp(16px, 3vw, 36px);
+    right: clamp(20px, 4vw, 44px);
     font-family: 'DM Mono', monospace;
-    font-size: 13px;
+    font-size: clamp(9px, 1.2vw, 13px);
     letter-spacing: 3px;
     text-transform: uppercase;
-    opacity: 0.55;
+    opacity: 0.45;
     color: #fff;
   }
 
@@ -46,9 +55,10 @@
      CARD 1 — SETUP & PAYOFF
   ════════════════════════ */
   .card1 {
-    background: #0f0c0c;
+    background: var(--dark);
     border: 1px solid #1a1a1a;
-    padding: 80px;
+    padding: clamp(32px, 6vw, 80px);
+    min-height: clamp(480px, 80vw, 1080px);
   }
 
   .card1::before {
@@ -56,164 +66,185 @@
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #e63030, #ff6b00, #e63030);
+    background: linear-gradient(90deg, var(--red), var(--orange), var(--red));
+  }
+
+  .grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(230,48,48,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(230,48,48,0.03) 1px, transparent 1px);
+    background-size: clamp(40px, 6vw, 60px) clamp(40px, 6vw, 60px);
+    pointer-events: none;
   }
 
   .card1 .big-num {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 200px;
+    font-size: clamp(100px, 18vw, 200px);
     line-height: 1;
-    color: #1a0a0a;
+    color: #1a0808;
     position: absolute;
-    top: 30px; right: 60px;
-    letter-spacing: -8px;
+    top: 20px; right: clamp(16px, 4vw, 60px);
+    letter-spacing: -4px;
     user-select: none;
+    pointer-events: none;
   }
 
-  .card1 .label {
+  .content { position: relative; z-index: 1; }
+
+  .label {
     font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 6px;
+    font-size: clamp(9px, 1.3vw, 11px);
+    letter-spacing: clamp(3px, 1vw, 6px);
     text-transform: uppercase;
-    color: #e63030;
-    margin-bottom: 16px;
+    color: var(--red);
+    margin-bottom: clamp(10px, 2vw, 18px);
   }
 
   .card1 h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 72px;
+    font-size: clamp(38px, 7vw, 78px);
     font-weight: 900;
     color: #fff;
     line-height: 1.05;
-    margin-bottom: 50px;
+    margin-bottom: clamp(28px, 5vw, 50px);
   }
 
-  .card1 h1 span { color: #e63030; font-style: italic; }
+  .card1 h1 span { color: var(--red); font-style: italic; }
 
   .divider {
-    width: 48px;
-    height: 2px;
-    background: #e63030;
-    margin-bottom: 44px;
+    width: clamp(32px, 5vw, 52px);
+    height: 3px;
+    background: var(--red);
+    margin-bottom: clamp(28px, 5vw, 46px);
   }
 
   .two-col {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    margin-bottom: 48px;
+    gap: clamp(14px, 3vw, 28px);
+    margin-bottom: clamp(28px, 5vw, 44px);
+  }
+
+  @media (max-width: 480px) {
+    .two-col { grid-template-columns: 1fr; }
   }
 
   .box {
     border: 1px solid #2a2a2a;
-    padding: 28px 28px 32px;
-    position: relative;
+    padding: clamp(16px, 3vw, 28px);
+    background: #0d0b0b;
   }
 
-  .box .box-label {
-    font-size: 10px;
-    letter-spacing: 5px;
+  .box-label {
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(8px, 1.2vw, 10px);
+    letter-spacing: clamp(3px, 1vw, 5px);
+    color: var(--red);
     text-transform: uppercase;
-    color: #e63030;
-    margin-bottom: 12px;
+    margin-bottom: clamp(8px, 1.5vw, 14px);
   }
 
   .box p {
-    font-size: 14px;
-    line-height: 1.75;
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(11px, 1.5vw, 14px);
+    line-height: 1.8;
     color: #aaa;
   }
+
+  .box p strong { color: #fff; }
 
   .rule {
     border: none;
     border-top: 1px solid #1e1e1e;
-    margin: 40px 0;
+    margin: clamp(20px, 4vw, 36px) 0;
   }
 
   .insight {
     display: flex;
     align-items: flex-start;
-    gap: 20px;
+    gap: clamp(10px, 2vw, 18px);
   }
 
   .insight .arrow {
-    font-size: 24px;
-    color: #e63030;
+    font-size: clamp(16px, 2.5vw, 24px);
+    color: var(--red);
     margin-top: 2px;
     flex-shrink: 0;
   }
 
   .insight p {
-    font-size: 15px;
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(11px, 1.5vw, 15px);
     line-height: 1.8;
     color: #ccc;
   }
 
   .insight p strong { color: #fff; }
 
-  /* sub-rule: start late / leave early */
-  .card1 .sub-rule {
-    margin-top: 44px;
-  }
+  .sub-rule { margin-top: clamp(24px, 4vw, 40px); }
 
-  .card1 .sub-rule .label2 {
+  .label2 {
     font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 5px;
+    font-size: clamp(8px, 1.2vw, 10px);
+    letter-spacing: clamp(3px, 1vw, 5px);
+    color: var(--orange);
     text-transform: uppercase;
-    color: #ff6b00;
-    margin-bottom: 12px;
+    margin-bottom: clamp(8px, 1.5vw, 10px);
   }
 
-  .card1 .sub-rule h2 {
+  .sub-rule h2 {
     font-family: 'Playfair Display', serif;
-    font-size: 38px;
+    font-size: clamp(22px, 4vw, 38px);
     font-weight: 700;
     color: #fff;
-    margin-bottom: 20px;
+    margin-bottom: clamp(10px, 2vw, 14px);
   }
 
-  .card1 .sub-rule p {
-    font-size: 14px;
+  .sub-rule p {
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(11px, 1.5vw, 14px);
     line-height: 1.8;
     color: #aaa;
-    max-width: 720px;
   }
 
-  .card1 .example-tag {
+  .example-tag {
     display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    border: 1px solid #ff6b00;
-    font-size: 13px;
-    color: #ff6b00;
-    letter-spacing: 1px;
+    margin-top: clamp(12px, 2vw, 18px);
+    padding: clamp(8px, 1.5vw, 10px) clamp(14px, 2.5vw, 20px);
+    border: 1px solid var(--orange);
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(10px, 1.4vw, 13px);
+    color: var(--orange);
+    line-height: 1.6;
   }
 
   /* ════════════════════════
      CARD 2 — HOW TO WRITE DRAMA
   ════════════════════════ */
   .card2 {
-    background: #f5f0e8;
-    padding: 80px;
+    background: var(--off-white);
+    padding: clamp(32px, 6vw, 80px);
+    min-height: clamp(480px, 80vw, 1080px);
   }
 
   .card2::after {
     content: '';
     position: absolute;
     bottom: 0; left: 0;
-    width: 100%;
-    height: 6px;
+    width: 100%; height: 6px;
     background: #1a1a1a;
   }
 
   .card2 .stamp {
     position: absolute;
-    top: 64px; right: 72px;
+    top: clamp(30px, 5vw, 64px);
+    right: clamp(20px, 5vw, 72px);
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 80px;
-    color: #e63030;
-    opacity: 0.12;
+    font-size: clamp(48px, 9vw, 90px);
+    font-weight: 900;
+    color: var(--red);
+    opacity: 0.08;
     letter-spacing: 4px;
     transform: rotate(-8deg);
     user-select: none;
@@ -221,220 +252,237 @@
 
   .card2 .label {
     font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 6px;
+    font-size: clamp(9px, 1.3vw, 10px);
+    letter-spacing: clamp(3px, 1vw, 6px);
     text-transform: uppercase;
     color: #666;
-    margin-bottom: 14px;
+    margin-bottom: clamp(10px, 2vw, 14px);
   }
 
   .card2 h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 62px;
+    font-size: clamp(36px, 6.5vw, 68px);
     font-weight: 900;
     color: #1a1a1a;
     line-height: 1.1;
-    margin-bottom: 10px;
   }
 
-  .card2 h1 em { color: #e63030; }
+  .card2 h1 em { color: var(--red); }
 
   .card2 .divider2 {
-    width: 60px;
+    width: clamp(40px, 6vw, 60px);
     height: 3px;
     background: #1a1a1a;
-    margin: 28px 0 44px;
+    margin: clamp(18px, 3vw, 28px) 0 clamp(28px, 5vw, 44px);
   }
 
   .method-block {
-    margin-bottom: 44px;
-    padding-left: 28px;
+    margin-bottom: clamp(22px, 4vw, 36px);
+    padding-left: clamp(16px, 3vw, 28px);
     border-left: 3px solid #1a1a1a;
   }
 
   .method-block .num {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 48px;
-    color: #e63030;
+    font-size: clamp(32px, 5vw, 48px);
+    color: var(--red);
     line-height: 1;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
   }
 
   .method-block h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 26px;
+    font-size: clamp(17px, 2.5vw, 24px);
     font-weight: 700;
     color: #1a1a1a;
-    margin-bottom: 10px;
+    margin-bottom: clamp(6px, 1.2vw, 10px);
   }
 
   .method-block p {
-    font-size: 14px;
-    line-height: 1.8;
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(10px, 1.4vw, 13px);
+    line-height: 1.85;
     color: #555;
   }
 
   .three-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 24px;
-    margin-top: 40px;
+    gap: clamp(10px, 2vw, 20px);
+    margin-top: clamp(20px, 4vw, 36px);
+  }
+
+  @media (max-width: 600px) {
+    .three-grid { grid-template-columns: 1fr; }
   }
 
   .mini-card {
     background: #1a1a1a;
-    padding: 24px;
-    color: #fff;
+    padding: clamp(14px, 2.5vw, 22px);
   }
 
-  .mini-card .mc-label {
-    font-size: 9px;
+  .mc-label {
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(8px, 1.1vw, 9px);
     letter-spacing: 4px;
-    color: #e63030;
+    color: var(--red);
     text-transform: uppercase;
-    margin-bottom: 10px;
+    margin-bottom: clamp(6px, 1.2vw, 10px);
   }
 
   .mini-card p {
-    font-size: 13px;
-    line-height: 1.7;
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(10px, 1.3vw, 12px);
+    line-height: 1.75;
     color: #ccc;
   }
 
-  .card2 .watermark { color: #1a1a1a; }
+  .card2 .watermark { color: rgba(26,26,26,0.25); }
 
   /* ════════════════════════
      CARD 3 — SCREENPLAY FORMAT
   ════════════════════════ */
   .card3 {
     background: linear-gradient(135deg, #0d0d12 0%, #12090d 100%);
-    padding: 80px;
+    padding: clamp(32px, 6vw, 80px);
     border: 1px solid #1c1c2a;
+    min-height: clamp(480px, 80vw, 1080px);
   }
 
   .card3 .grid-bg {
-    position: absolute;
-    inset: 0;
+    position: absolute; inset: 0;
     background-image:
       linear-gradient(rgba(230,48,48,0.04) 1px, transparent 1px),
       linear-gradient(90deg, rgba(230,48,48,0.04) 1px, transparent 1px);
-    background-size: 60px 60px;
+    background-size: clamp(40px, 6vw, 60px) clamp(40px, 6vw, 60px);
   }
 
-  .card3 .content { position: relative; z-index: 1; }
-
   .card3 .label {
-    font-size: 10px;
-    letter-spacing: 6px;
-    color: #e63030;
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(9px, 1.3vw, 10px);
+    letter-spacing: clamp(3px, 1vw, 6px);
+    color: var(--red);
     text-transform: uppercase;
-    margin-bottom: 16px;
+    margin-bottom: clamp(10px, 2vw, 16px);
   }
 
   .card3 h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 64px;
+    font-size: clamp(38px, 7vw, 72px);
     font-weight: 900;
     color: #fff;
     line-height: 1.05;
-    margin-bottom: 8px;
   }
 
-  .card3 h1 span { color: #e63030; }
+  .card3 h1 span { color: var(--red); }
 
-  .card3 .divider { margin-bottom: 50px; }
+  .card3 .divider {
+    width: clamp(32px, 5vw, 52px);
+    height: 3px;
+    background: var(--red);
+    margin: clamp(18px, 3vw, 28px) 0 clamp(28px, 5vw, 44px);
+  }
 
   .format-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 28px;
-    margin-bottom: 28px;
+    gap: clamp(14px, 3vw, 24px);
+    margin-bottom: clamp(14px, 3vw, 24px);
   }
 
-  .format-item {
-    display: flex;
-    gap: 18px;
-    align-items: flex-start;
+  @media (max-width: 520px) {
+    .format-row { grid-template-columns: 1fr; }
   }
+
+  .format-item { display: flex; gap: clamp(10px, 2vw, 18px); align-items: flex-start; }
 
   .fi-num {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 52px;
-    color: #e63030;
+    font-size: clamp(36px, 6vw, 52px);
+    color: var(--red);
     line-height: 1;
     flex-shrink: 0;
   }
 
   .fi-body h4 {
     font-family: 'Playfair Display', serif;
-    font-size: 18px;
+    font-size: clamp(14px, 2vw, 18px);
     font-weight: 700;
     color: #fff;
-    margin-bottom: 6px;
-    margin-top: 8px;
+    margin-bottom: 4px;
+    margin-top: 6px;
   }
 
   .fi-body p, .fi-body ul {
-    font-size: 13px;
-    line-height: 1.75;
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(10px, 1.4vw, 12px);
+    line-height: 1.8;
     color: #888;
   }
 
-  .fi-body ul { padding-left: 16px; }
+  .fi-body ul { padding-left: 14px; }
 
   .terminal-box {
-    margin-top: 40px;
+    margin-top: clamp(20px, 4vw, 32px);
     border: 1px solid #2a2a3a;
     background: #08080e;
-    padding: 28px 32px;
+    padding: clamp(16px, 3vw, 28px) clamp(18px, 3.5vw, 32px);
     font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    color: #888;
+    font-size: clamp(10px, 1.4vw, 13px);
+    color: #777;
     line-height: 2;
   }
 
-  .terminal-box .t-red { color: #e63030; }
-  .terminal-box .t-white { color: #eee; }
-  .terminal-box .t-center { text-align: center; color: #ccc; }
-  .terminal-box .t-indent { padding-left: 120px; }
+  .t-red { color: var(--red); }
+  .t-white { color: #eee; }
+  .t-center { text-align: center; }
 
   /* ════════════════════════
      CARD 4 — MASTER RULES
   ════════════════════════ */
   .card4 {
     background: #fff;
-    padding: 80px;
-    border-left: 10px solid #e63030;
+    padding: clamp(32px, 6vw, 80px);
+    border-left: clamp(5px, 1vw, 10px) solid var(--red);
+    min-height: clamp(480px, 80vw, 1080px);
   }
 
   .card4 .label {
-    font-size: 10px;
-    letter-spacing: 6px;
-    color: #e63030;
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(9px, 1.3vw, 10px);
+    letter-spacing: clamp(3px, 1vw, 6px);
+    color: var(--red);
     text-transform: uppercase;
-    margin-bottom: 16px;
+    margin-bottom: clamp(10px, 2vw, 16px);
   }
 
   .card4 h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 60px;
+    font-size: clamp(34px, 6vw, 66px);
     font-weight: 900;
     color: #0f0f0f;
     line-height: 1.1;
-    margin-bottom: 50px;
+    margin-bottom: clamp(24px, 5vw, 46px);
   }
 
   .rule-list {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0;
+    border-top: 1px solid #eee;
+    border-left: 1px solid #eee;
+  }
+
+  @media (max-width: 500px) {
+    .rule-list { grid-template-columns: 1fr; }
+    .rule-item { border-right: 1px solid #eee !important; }
   }
 
   .rule-item {
     display: flex;
     align-items: flex-start;
-    gap: 16px;
-    padding: 22px 24px;
+    gap: clamp(10px, 2vw, 14px);
+    padding: clamp(14px, 2.5vw, 22px) clamp(14px, 2.5vw, 22px);
     border-bottom: 1px solid #eee;
     border-right: 1px solid #eee;
   }
@@ -443,141 +491,137 @@
 
   .rule-item .hash {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    color: #e63030;
+    font-size: clamp(20px, 3vw, 28px);
+    color: var(--red);
     flex-shrink: 0;
-    margin-top: -2px;
+    line-height: 1;
   }
 
   .rule-item p {
-    font-size: 13.5px;
-    line-height: 1.65;
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(10px, 1.4vw, 13px);
+    line-height: 1.7;
     color: #333;
   }
 
-  .rule-item p strong { color: #0f0f0f; font-weight: 500; }
+  .rule-item p strong { color: #0f0f0f; font-weight: 600; }
 
-  .card4 .bottom-bar {
-    margin-top: 48px;
+  .bottom-bar {
+    margin-top: clamp(24px, 5vw, 40px);
     display: flex;
-    gap: 0;
   }
 
   .bbar-item {
     flex: 1;
-    background: #0f0f0f;
-    padding: 24px;
+    padding: clamp(14px, 3vw, 22px);
     text-align: center;
   }
 
-  .bbar-item:nth-child(2) { background: #e63030; }
+  .bbar-item:nth-child(1) { background: #0f0f0f; }
+  .bbar-item:nth-child(2) { background: var(--red); }
+  .bbar-item:nth-child(3) { background: #1a1a1a; }
 
-  .bbar-item .bi-label {
-    font-size: 9px;
-    letter-spacing: 4px;
-    color: rgba(255,255,255,0.5);
+  .bi-label {
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(7px, 1.1vw, 9px);
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.45);
     text-transform: uppercase;
-    margin-bottom: 6px;
+    margin-bottom: 5px;
   }
 
-  .bbar-item .bi-val {
+  .bi-val {
     font-family: 'Playfair Display', serif;
-    font-size: 17px;
+    font-size: clamp(12px, 1.8vw, 17px);
     font-weight: 700;
     color: #fff;
   }
 
-  .card4 .watermark { color: #0f0f0f; }
+  .card4 .watermark { color: rgba(15,15,15,0.2); }
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════ -->
-<!-- CARD 1: SETUP & PAYOFF             -->
-<!-- ═══════════════════════════════════ -->
-<div class="card card1" id="card1">
+<!-- CARD 1: SETUP & PAYOFF -->
+<div class="card card1">
+  <div class="grid-bg"></div>
   <div class="big-num">01</div>
-  <div class="label">Screenwriting Fundamentals</div>
-  <h1>Setup &amp;<br><span>Pay&shy;off</span></h1>
-  <div class="divider"></div>
-  <div class="two-col">
-    <div class="box">
-      <div class="box-label">Setup</div>
-      <p>Must be established at the <strong style="color:#fff">beginning of the story</strong> — plant it early so the audience registers it without knowing why.</p>
+  <div class="content">
+    <div class="label">Screenwriting Fundamentals</div>
+    <h1>Setup &amp;<br><span>Payoff</span></h1>
+    <div class="divider"></div>
+    <div class="two-col">
+      <div class="box">
+        <div class="box-label">Setup</div>
+        <p>Must be established at the <strong>beginning of the story</strong> — plant it early so the audience registers it without knowing why.</p>
+      </div>
+      <div class="box">
+        <div class="box-label">Payoff</div>
+        <p>The moment the setup <strong>pays back</strong> — the gun shown must be fired. The chamber checked must matter.</p>
+      </div>
     </div>
-    <div class="box">
-      <div class="box-label">Payoff</div>
-      <p>The moment the setup <strong style="color:#fff">pays back</strong> — the gun that was shown must be fired. The chamber checked must matter.</p>
+    <div class="insight">
+      <div class="arrow">→</div>
+      <p>Our brain <strong>always connects things</strong> — that's why setup &amp; payoff works. The mind hunts for patterns and rewards them with satisfaction.</p>
     </div>
-  </div>
-  <div class="insight">
-    <div class="arrow">→</div>
-    <p>Our brain <strong>always connects things</strong> — that's why setup &amp; payoff works. The mind hunts for patterns and rewards them with satisfaction.</p>
-  </div>
-  <hr class="rule">
-  <div class="sub-rule">
-    <div class="label2">Rule 02</div>
-    <h2>Start Late. Leave Early.</h2>
-    <p>Never show the whole conversation between two characters. Show only the <strong style="color:#fff">highlighting factor</strong> of that exchange — the moment that moves the story.</p>
-    <div class="example-tag">EG: Character A announces "Holidays — two months!" No filler. No small talk.</div>
+    <hr class="rule">
+    <div class="sub-rule">
+      <div class="label2">Rule 02</div>
+      <h2>Start Late. Leave Early.</h2>
+      <p>Never show the whole conversation between two characters. Show only the <strong style="color:#fff">highlighting factor</strong> — the moment that actually moves the story forward.</p>
+      <div class="example-tag">EG: Character A says "Holidays — two months!" No filler. No small talk.</div>
+    </div>
   </div>
   <div class="watermark">Atif Khan</div>
 </div>
 
-<!-- ═══════════════════════════════════ -->
-<!-- CARD 2: HOW TO WRITE DRAMA         -->
-<!-- ═══════════════════════════════════ -->
-<div class="card card2" id="card2">
+<!-- CARD 2: HOW TO WRITE DRAMA -->
+<div class="card card2">
   <div class="stamp">DRAMA</div>
-  <div class="label">The Craft of Storytelling</div>
-  <h1>How to Write<br><em>Drama.</em></h1>
-  <div class="divider2"></div>
-
-  <div class="method-block">
-    <div class="num">01</div>
-    <h3>Finding Answers</h3>
-    <p>Create a mystery or problem so your audience <strong>must be intrigued</strong> to find it. Your character is either finding something — or trying to achieve something. Both create forward pull.</p>
-  </div>
-
-  <div class="method-block">
-    <div class="num">02</div>
-    <h3>Order &amp; Chaos</h3>
-    <p>Life flows: Order → Chaos → Order. Create a <strong>constant life</strong> for a character, then chaos disrupts it, then order returns — transformed. The disruption is the story.</p>
-  </div>
-
-  <div class="method-block">
-    <div class="num">03</div>
-    <h3>Character Exposition</h3>
-    <p>Some scenes are irrelevant on the surface — but keep them if they reveal <strong>character nature</strong>. A scene of a guy helping others on campus has relevance if it shows who this person is.</p>
-  </div>
-
-  <div class="three-grid">
-    <div class="mini-card">
-      <div class="mc-label">Narrative Journey</div>
-      <p>Every story has an Internal Journey (regret, self-evaluation) and an External Journey (the plot flowing through your scenes).</p>
+  <div class="content">
+    <div class="label">The Craft of Storytelling</div>
+    <h1>How to Write<br><em>Drama.</em></h1>
+    <div class="divider2"></div>
+    <div class="method-block">
+      <div class="num">01</div>
+      <h3>Finding Answers</h3>
+      <p>Create a mystery or problem so your audience must be intrigued to find it. Your character is either finding something — or trying to achieve something. Both create forward pull.</p>
     </div>
-    <div class="mini-card">
-      <div class="mc-label">Character Depth</div>
-      <p>Show traits — Beauty, Loyalty. Remove good traits to create less likeable but more <em>interesting</em> characters.</p>
+    <div class="method-block">
+      <div class="num">02</div>
+      <h3>Order &amp; Chaos</h3>
+      <p>Life flows: Order → Chaos → Order. Give your character a constant life, then chaos disrupts it, then order returns — transformed. The disruption IS the story.</p>
     </div>
-    <div class="mini-card">
-      <div class="mc-label">Exposition Hook</div>
-      <p>Father's health issues → audience is now intrigued whether the character achieves their goal or not.</p>
+    <div class="method-block">
+      <div class="num">03</div>
+      <h3>Character Exposition</h3>
+      <p>Some scenes feel irrelevant — but keep them if they reveal character nature. A scene showing a "helping" nature has relevance even if the plot doesn't need it.</p>
+    </div>
+    <div class="three-grid">
+      <div class="mini-card">
+        <div class="mc-label">Narrative Journey</div>
+        <p>Every story has an Internal Journey (regret, self-evaluation) and an External Journey flowing through your scenes.</p>
+      </div>
+      <div class="mini-card">
+        <div class="mc-label">Character Depth</div>
+        <p>Show traits — Beauty, Loyalty. Remove good traits to create less likeable but far more interesting characters.</p>
+      </div>
+      <div class="mini-card">
+        <div class="mc-label">Exposition Hook</div>
+        <p>Father's health issues → audience is now intrigued whether the character achieves their goal or not.</p>
+      </div>
     </div>
   </div>
-  <div class="watermark" style="color:#1a1a1a">Atif Khan</div>
+  <div class="watermark">Atif Khan</div>
 </div>
 
-<!-- ═══════════════════════════════════ -->
-<!-- CARD 3: SCREENPLAY FORMAT          -->
-<!-- ═══════════════════════════════════ -->
-<div class="card card3" id="card3">
+<!-- CARD 3: SCREENPLAY FORMAT -->
+<div class="card card3">
   <div class="grid-bg"></div>
   <div class="content">
     <div class="label">Technical Reference</div>
     <h1>Screenplay<br><span>Format</span></h1>
     <div class="divider"></div>
-
     <div class="format-row">
       <div class="format-item">
         <div class="fi-num">1</div>
@@ -593,12 +637,11 @@
           <ul>
             <li>INT → Interior</li>
             <li>EXT → Exterior</li>
-            <li>I/O → Interior, Exterior</li>
+            <li>I/O → Interior + Exterior</li>
           </ul>
         </div>
       </div>
     </div>
-
     <div class="format-row">
       <div class="format-item">
         <div class="fi-num">3</div>
@@ -611,32 +654,28 @@
         <div class="fi-num">4</div>
         <div class="fi-body">
           <h4>Time of Day</h4>
-          <p>COURTYARD – JOHN'S HOUSE – MORNING / EVENING</p>
+          <p>COURTYARD – JOHN'S HOUSE<br>MORNING / EVENING</p>
         </div>
       </div>
     </div>
-
     <div class="terminal-box">
       <div class="t-red">EXT. COURTYARD – JOHN'S HOUSE – MORNING</div>
       <div class="t-white" style="margin-top:8px">Action Line: Always in present tense.</div>
       <div style="color:#555">Will NOT show thoughts or internal emotions of characters.</div>
       <div style="color:#555; font-style:italic">(Wrong: "His eyes were quietly trembling due to fear.")</div>
-      <div style="margin-top:16px" class="t-center">JOHN</div>
-      <div class="t-center t-indent" style="color:#ccc; padding-left:200px">(Character dialogue — centered on page)</div>
-      <div style="margin-top:12px" class="t-center">JACOB</div>
-      <div class="t-center" style="color:#555; padding-left:200px">(Response)</div>
+      <div style="margin-top:14px; text-align:center; color:#ccc;">JOHN</div>
+      <div style="text-align:center; color:#888;">(Character dialogue — centered on page)</div>
+      <div style="margin-top:10px; text-align:center; color:#ccc;">JACOB</div>
+      <div style="text-align:center; color:#555;">(Response)</div>
     </div>
-    <div class="watermark">Atif Khan</div>
   </div>
+  <div class="watermark">Atif Khan</div>
 </div>
 
-<!-- ═══════════════════════════════════ -->
-<!-- CARD 4: MASTER RULES               -->
-<!-- ═══════════════════════════════════ -->
-<div class="card card4" id="card4">
+<!-- CARD 4: MASTER RULES -->
+<div class="card card4">
   <div class="label">The Writer's Manifesto</div>
   <h1>Master Rules<br>of the Craft</h1>
-
   <div class="rule-list">
     <div class="rule-item">
       <div class="hash">#</div>
@@ -644,15 +683,15 @@
     </div>
     <div class="rule-item">
       <div class="hash">#</div>
-      <p>Be a conductor of audience emotions — <strong>bring contradictory emotions</strong> out of them.</p>
+      <p>Be a conductor of audience emotions — bring <strong>contradictory emotions</strong> out of them.</p>
     </div>
     <div class="rule-item">
       <div class="hash">#</div>
-      <p>Write your screenplay <strong>for the reader</strong> — it has to be felt on the page.</p>
+      <p>Write your screenplay <strong>for the reader</strong> — it must be felt on the page.</p>
     </div>
     <div class="rule-item">
       <div class="hash">#</div>
-      <p>Be <strong>true to your characters</strong>. Let them make decisions you wouldn't.</p>
+      <p><strong>Be true to your characters.</strong> Let them make decisions you wouldn't.</p>
     </div>
     <div class="rule-item">
       <div class="hash">#</div>
@@ -668,18 +707,17 @@
     </div>
     <div class="rule-item">
       <div class="hash">#</div>
-      <p>Give your characters <strong>decisions &amp; consequences</strong> to make → Moral Choices.</p>
+      <p>Give characters <strong>decisions &amp; consequences</strong> → Moral Choices.</p>
     </div>
     <div class="rule-item">
       <div class="hash">#</div>
-      <p>Put clues to certain things — let your audience <strong>decide for themselves</strong>.</p>
+      <p>Put clues — let your audience <strong>decide for themselves.</strong></p>
     </div>
     <div class="rule-item">
       <div class="hash">#</div>
       <p>Rule out morality to <strong>create interesting characters</strong> — complexity over virtue.</p>
     </div>
   </div>
-
   <div class="bottom-bar">
     <div class="bbar-item">
       <div class="bi-label">Principle</div>
@@ -694,8 +732,7 @@
       <div class="bi-val">Character First</div>
     </div>
   </div>
-
-  <div class="watermark" style="color:#0f0f0f">Atif Khan</div>
+  <div class="watermark">Atif Khan</div>
 </div>
 
 </body>

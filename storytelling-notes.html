@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Art of Storytelling — Notes imp</title>
+<title>Art of Storytelling — Atif Khan</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
 <style>
   :root {
@@ -37,7 +37,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 4rem 2rem;
+    padding: clamp(3rem, 8vw, 6rem) clamp(1.2rem, 5vw, 2rem);
     position: relative;
     overflow: hidden;
   }
@@ -55,18 +55,18 @@
 
   .hero-eyebrow {
     font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.35em;
+    font-size: clamp(0.55rem, 1.5vw, 0.7rem);
+    letter-spacing: 0.3em;
     text-transform: uppercase;
     color: var(--gold);
     opacity: 0.8;
-    margin-bottom: 2rem;
+    margin-bottom: clamp(1.2rem, 3vw, 2rem);
     animation: fadeUp 0.8s ease both;
   }
 
   .hero h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 9vw, 7rem);
+    font-size: clamp(2.8rem, 10vw, 7rem);
     font-weight: 900;
     color: var(--parchment);
     line-height: 1;
@@ -80,26 +80,27 @@
   }
 
   .hero-sub {
-    margin-top: 1.5rem;
-    font-size: 1.05rem;
+    margin-top: clamp(1rem, 2.5vw, 1.5rem);
+    font-size: clamp(0.9rem, 2.2vw, 1.05rem);
     font-weight: 300;
     color: rgba(245,240,232,0.55);
     max-width: 480px;
     line-height: 1.7;
     animation: fadeUp 0.8s 0.3s ease both;
+    padding: 0 0.5rem;
   }
 
   .hero-divider {
     width: 60px;
     height: 2px;
     background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    margin: 2.5rem auto 0;
+    margin: clamp(1.5rem, 4vw, 2.5rem) auto 0;
     animation: fadeUp 0.8s 0.45s ease both;
   }
 
   .scroll-hint {
     position: absolute;
-    bottom: 2.5rem;
+    bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
     font-family: 'Space Mono', monospace;
@@ -124,7 +125,6 @@
     position: relative;
   }
 
-  /* ornamental top edge */
   main::before {
     content: '';
     display: block;
@@ -137,31 +137,34 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(250,247,242,0.95);
+    background: rgba(250,247,242,0.97);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 0;
-    padding: 0 1rem;
+    padding: 0 clamp(0.5rem, 2vw, 1rem);
     overflow-x: auto;
     scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
   }
   .nav-tabs::-webkit-scrollbar { display: none; }
 
   .tab-btn {
     font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
+    font-size: clamp(0.55rem, 1.5vw, 0.65rem);
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--muted);
     background: none;
     border: none;
-    padding: 1rem 1.4rem;
+    padding: clamp(0.75rem, 2vw, 1rem) clamp(0.8rem, 2vw, 1.4rem);
     cursor: pointer;
     border-bottom: 2px solid transparent;
     white-space: nowrap;
     transition: color 0.2s, border-color 0.2s;
+    flex-shrink: 0;
   }
   .tab-btn:hover, .tab-btn.active {
     color: var(--gold);
@@ -172,13 +175,13 @@
   .section {
     max-width: 900px;
     margin: 0 auto;
-    padding: 5rem 2rem;
+    padding: clamp(2.5rem, 7vw, 5rem) clamp(1.2rem, 5vw, 2rem);
     border-bottom: 1px solid var(--border);
   }
 
   .section-label {
     font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
+    font-size: clamp(0.55rem, 1.5vw, 0.65rem);
     letter-spacing: 0.3em;
     text-transform: uppercase;
     color: var(--gold);
@@ -187,24 +190,24 @@
 
   .section-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-size: clamp(1.8rem, 6vw, 3.2rem);
     font-weight: 700;
     color: var(--ink);
     line-height: 1.1;
-    margin-bottom: 2.5rem;
+    margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
   }
 
   /* ── DEFINITION CARD ── */
   .def-card {
     background: var(--parchment);
     border-left: 3px solid var(--gold);
-    padding: 1.6rem 2rem;
+    padding: clamp(1rem, 3vw, 1.6rem) clamp(1rem, 3vw, 2rem);
     border-radius: 0 8px 8px 0;
-    margin-bottom: 2rem;
+    margin-bottom: clamp(1.2rem, 3vw, 2rem);
     position: relative;
   }
   .def-card p {
-    font-size: 1.05rem;
+    font-size: clamp(0.9rem, 2.2vw, 1.05rem);
     line-height: 1.75;
     color: var(--accent);
   }
@@ -213,16 +216,16 @@
   /* ── GRID ── */
   .grid-2 {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.2rem;
-    margin-top: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+    gap: clamp(0.8rem, 2vw, 1.2rem);
+    margin-top: clamp(1rem, 3vw, 1.5rem);
   }
 
   .card {
     background: #fff;
     border: 1px solid var(--border);
     border-radius: 10px;
-    padding: 1.5rem;
+    padding: clamp(1rem, 3vw, 1.5rem);
     transition: transform 0.2s, box-shadow 0.2s;
   }
   .card:hover {
@@ -238,16 +241,17 @@
     justify-content: center;
     font-size: 1.1rem;
     margin-bottom: 0.9rem;
+    flex-shrink: 0;
   }
   .card h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 1.05rem;
+    font-size: clamp(0.95rem, 2.2vw, 1.05rem);
     font-weight: 700;
     color: var(--ink);
     margin-bottom: 0.5rem;
   }
   .card p {
-    font-size: 0.88rem;
+    font-size: clamp(0.8rem, 1.8vw, 0.88rem);
     line-height: 1.65;
     color: var(--muted);
   }
@@ -260,8 +264,8 @@
 
   /* ── QUOTE BLOCK ── */
   .quote-block {
-    margin: 3rem 0;
-    padding: 2.5rem;
+    margin: clamp(1.5rem, 5vw, 3rem) 0;
+    padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1.2rem, 4vw, 2.5rem);
     background: var(--ink);
     border-radius: 12px;
     text-align: center;
@@ -274,14 +278,14 @@
     top: -20px;
     left: 20px;
     font-family: 'Playfair Display', serif;
-    font-size: 10rem;
+    font-size: clamp(6rem, 15vw, 10rem);
     color: rgba(201,168,76,0.08);
     line-height: 1;
     pointer-events: none;
   }
   .quote-block blockquote {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(1.3rem, 3vw, 1.9rem);
+    font-size: clamp(1.1rem, 3.5vw, 1.9rem);
     font-style: italic;
     color: var(--gold-light);
     line-height: 1.55;
@@ -292,31 +296,30 @@
     display: block;
     margin-top: 1rem;
     font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
+    font-size: clamp(0.55rem, 1.5vw, 0.65rem);
     letter-spacing: 0.2em;
     color: rgba(201,168,76,0.5);
     font-style: normal;
   }
 
-  /* ── TIMELINE (Spider-Man) ── */
+  /* ── TIMELINE ── */
   .timeline {
     position: relative;
-    padding-left: 2rem;
-    margin-top: 2rem;
+    padding-left: clamp(1.2rem, 4vw, 2rem);
+    margin-top: clamp(1.2rem, 3vw, 2rem);
   }
   .timeline::before {
     content: '';
     position: absolute;
-    left: 0.5rem;
-    top: 0;
-    bottom: 0;
+    left: clamp(0.3rem, 1.2vw, 0.5rem);
+    top: 0; bottom: 0;
     width: 2px;
     background: linear-gradient(to bottom, var(--gold), var(--rust), var(--forest));
   }
   .tl-item {
     position: relative;
-    margin-bottom: 2rem;
-    padding-left: 1.5rem;
+    margin-bottom: clamp(1.2rem, 4vw, 2rem);
+    padding-left: clamp(1rem, 3vw, 1.5rem);
     opacity: 0;
     transform: translateX(-16px);
     transition: opacity 0.5s, transform 0.5s;
@@ -327,7 +330,7 @@
   }
   .tl-dot {
     position: absolute;
-    left: -1.75rem;
+    left: clamp(-1.4rem, -3.5vw, -1.75rem);
     top: 0.3rem;
     width: 12px;
     height: 12px;
@@ -337,7 +340,7 @@
   }
   .tl-step {
     font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
+    font-size: clamp(0.55rem, 1.4vw, 0.6rem);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gold);
@@ -345,13 +348,13 @@
   }
   .tl-item h4 {
     font-family: 'Playfair Display', serif;
-    font-size: 1.15rem;
+    font-size: clamp(1rem, 2.5vw, 1.15rem);
     font-weight: 700;
     color: var(--ink);
     margin-bottom: 0.3rem;
   }
   .tl-item p {
-    font-size: 0.88rem;
+    font-size: clamp(0.8rem, 1.8vw, 0.88rem);
     color: var(--muted);
     line-height: 1.6;
   }
@@ -360,13 +363,13 @@
   .premise-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-top: 2rem;
+    gap: clamp(0.8rem, 2vw, 1.5rem);
+    margin-top: clamp(1rem, 3vw, 2rem);
   }
-  @media (max-width: 600px) { .premise-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 560px) { .premise-grid { grid-template-columns: 1fr; } }
 
   .premise-box {
-    padding: 1.6rem;
+    padding: clamp(1rem, 3vw, 1.6rem);
     border-radius: 10px;
     border: 1px solid var(--border);
   }
@@ -374,13 +377,17 @@
   .premise-box.light { background: var(--parchment); }
   .premise-box h4 {
     font-family: 'Playfair Display', serif;
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 2.2vw, 1rem);
     font-weight: 700;
     margin-bottom: 0.6rem;
   }
   .premise-box.dark h4 { color: var(--gold); }
   .premise-box.light h4 { color: var(--ink); }
-  .premise-box p { font-size: 0.88rem; line-height: 1.65; color: var(--muted); }
+  .premise-box p {
+    font-size: clamp(0.8rem, 1.8vw, 0.88rem);
+    line-height: 1.65;
+    color: var(--muted);
+  }
   .premise-box.dark p { color: rgba(245,240,232,0.6); }
 
   /* ── TAG LIST ── */
@@ -392,7 +399,7 @@
   }
   .tag {
     font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
+    font-size: clamp(0.58rem, 1.4vw, 0.65rem);
     letter-spacing: 0.08em;
     padding: 0.35rem 0.75rem;
     border-radius: 999px;
@@ -401,25 +408,35 @@
     background: #fff;
   }
 
-  /* ── CHARACTER TABLE ── */
+  /* ── CHARACTER TABLE — mobile friendly ── */
+  .char-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-top: clamp(1rem, 3vw, 1.5rem);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+
   .char-table {
     width: 100%;
+    min-width: 520px;
     border-collapse: collapse;
-    margin-top: 1.5rem;
-    font-size: 0.88rem;
+    font-size: clamp(0.78rem, 1.8vw, 0.88rem);
   }
   .char-table th {
     font-family: 'Space Mono', monospace;
-    font-size: 0.62rem;
+    font-size: clamp(0.55rem, 1.4vw, 0.62rem);
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--gold);
     text-align: left;
-    padding: 0.75rem 1rem;
+    padding: clamp(0.6rem, 2vw, 0.75rem) clamp(0.8rem, 2.5vw, 1rem);
     border-bottom: 2px solid var(--border);
+    background: var(--parchment);
   }
   .char-table td {
-    padding: 0.75rem 1rem;
+    padding: clamp(0.6rem, 2vw, 0.75rem) clamp(0.8rem, 2.5vw, 1rem);
     border-bottom: 1px solid var(--border);
     color: var(--accent);
     line-height: 1.5;
@@ -430,39 +447,55 @@
 
   /* ── CONFLICT TYPES ── */
   .conflict-row {
-    display: flex;
-    gap: 1.2rem;
-    margin-top: 1.5rem;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+    gap: clamp(0.8rem, 2vw, 1.2rem);
+    margin-top: clamp(1rem, 3vw, 1.5rem);
   }
+
   .conflict-pill {
-    flex: 1;
-    min-width: 160px;
     background: var(--parchment);
     border: 1px solid var(--border);
     border-radius: 10px;
-    padding: 1.2rem;
+    padding: clamp(1rem, 2.5vw, 1.2rem);
     text-align: center;
   }
-  .conflict-pill .emoji { font-size: 1.6rem; margin-bottom: 0.5rem; }
+  .conflict-pill .emoji {
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+    margin-bottom: 0.5rem;
+  }
   .conflict-pill h4 {
     font-family: 'Playfair Display', serif;
-    font-size: 0.95rem;
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
     font-weight: 700;
     color: var(--ink);
     margin-bottom: 0.3rem;
   }
-  .conflict-pill p { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+  .conflict-pill p {
+    font-size: clamp(0.72rem, 1.6vw, 0.78rem);
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ── SECTION HEADINGS ── */
+  .subsection-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.1rem, 2.8vw, 1.3rem);
+    color: var(--ink);
+    margin-bottom: clamp(0.8rem, 2vw, 1rem);
+    margin-top: clamp(1.5rem, 4vw, 2rem);
+  }
 
   /* ── FOOTER ── */
   footer {
     background: var(--ink);
     color: rgba(245,240,232,0.35);
     text-align: center;
-    padding: 3rem 2rem;
+    padding: clamp(1.8rem, 5vw, 3rem) clamp(1rem, 4vw, 2rem);
     font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
+    font-size: clamp(0.58rem, 1.5vw, 0.65rem);
     letter-spacing: 0.15em;
+    line-height: 1.8;
   }
   footer span { color: var(--gold); }
 
@@ -475,6 +508,12 @@
   .reveal.visible {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  /* ── MOBILE-ONLY TWEAKS ── */
+  @media (max-width: 400px) {
+    .hero h1 { font-size: 2.4rem; }
+    .tab-btn { padding: 0.7rem 0.9rem; font-size: 0.52rem; }
   }
 </style>
 </head>
@@ -492,13 +531,13 @@
 <main>
   <!-- NAV -->
   <nav class="nav-tabs" id="navTabs">
-    <button class="tab-btn active" onclick="scrollTo('foreshadowing')">Foreshadowing</button>
-    <button class="tab-btn" onclick="scrollTo('conflict')">Conflict</button>
-    <button class="tab-btn" onclick="scrollTo('premise')">Premise</button>
-    <button class="tab-btn" onclick="scrollTo('character')">Character</button>
-    <button class="tab-btn" onclick="scrollTo('plot')">Plot</button>
-    <button class="tab-btn" onclick="scrollTo('environment')">Environment</button>
-    <button class="tab-btn" onclick="scrollTo('example')">Example</button>
+    <button class="tab-btn active" onclick="scrollToSection('foreshadowing')">Foreshadowing</button>
+    <button class="tab-btn" onclick="scrollToSection('conflict')">Conflict</button>
+    <button class="tab-btn" onclick="scrollToSection('premise')">Premise</button>
+    <button class="tab-btn" onclick="scrollToSection('character')">Character</button>
+    <button class="tab-btn" onclick="scrollToSection('plot')">Plot</button>
+    <button class="tab-btn" onclick="scrollToSection('environment')">Environment</button>
+    <button class="tab-btn" onclick="scrollToSection('example')">Example</button>
   </nav>
 
   <!-- 1. FORESHADOWING -->
@@ -506,7 +545,7 @@
     <p class="section-label">01 — Concept</p>
     <h2 class="section-title">Foreshadowing</h2>
     <div class="def-card">
-      <p><strong>Foreshadowing</strong> is a literary technique that <strong>promises</strong, hints, or signals future events. It implies something is going to happen — creating tension, dramatic irony, and dramatic suspense that keeps the audience engaged.</p>
+      <p><strong>Foreshadowing</strong> is a literary technique that <strong>promises</strong>, hints, or signals future events. It implies something is going to happen — creating tension, dramatic irony, and dramatic suspense that keeps the audience engaged.</p>
     </div>
     <div class="grid-2">
       <div class="card">
@@ -530,8 +569,7 @@
         <p>Where the story begins — the moment of greatest conflict or interest. Everything builds from this entry point.</p>
       </div>
     </div>
-
-    <div class="def-card" style="margin-top:2rem;">
+    <div class="def-card" style="margin-top:clamp(1.2rem,3vw,2rem)">
       <p><strong>Inciting Incident / Catalyst</strong> — The event that sets the plot in motion. It represents the <em>central conflict</em> of the story and should be shown through character actions and clear narrative purpose.</p>
     </div>
   </section>
@@ -544,7 +582,7 @@
       <p><strong>Conflict</strong> is what drives narrative forward. It is <em>gradual movements</em> that involve emotional change in characters — sudden sharp charges that reveal <strong>personality</strong>, vulnerability, and growth. All conflict leads to a conclusion.</p>
     </div>
 
-    <h3 style="font-family:'Playfair Display',serif; font-size:1.3rem; color:var(--ink); margin-bottom:1rem; margin-top:2rem;">Types of Conflict</h3>
+    <h3 class="subsection-title">Types of Conflict</h3>
     <div class="conflict-row">
       <div class="conflict-pill">
         <div class="emoji">⚔️</div>
@@ -568,11 +606,11 @@
       </div>
     </div>
 
-    <div class="def-card" style="margin-top:2rem;">
+    <div class="def-card" style="margin-top:clamp(1.2rem,3vw,2rem)">
       <p><strong>Origin of Action</strong> — Action is an expression of the character's nature shaped by various forces and conditions. A character who stands alone with <em>no motivation</em> is equally a strong and compelling contradiction.</p>
     </div>
 
-    <h3 style="font-family:'Playfair Display',serif; font-size:1.3rem; color:var(--ink); margin:2rem 0 1rem;">Story Structure through Conflict</h3>
+    <h3 class="subsection-title">Story Structure through Conflict</h3>
     <div class="grid-2">
       <div class="card">
         <div class="card-icon bg-rust">📖</div>
@@ -606,12 +644,12 @@
       </div>
     </div>
 
-    <div class="def-card" style="margin-top:2rem;">
+    <div class="def-card" style="margin-top:clamp(1.2rem,3vw,2rem)">
       <p><strong>Good Authorship</strong> — Authors ensure that every climax and scene <strong>does not put unnecessary emphasis on the primary</strong>. The focus should remain on the premise — never shading away from it.</p>
     </div>
 
-    <div style="margin-top:2rem;">
-      <p style="font-family:'Playfair Display',serif; font-size:1.05rem; color:var(--accent); font-style:italic; margin-bottom:1rem;">Related structural concepts:</p>
+    <div style="margin-top:clamp(1.2rem,3vw,2rem)">
+      <p style="font-family:'Playfair Display',serif; font-size:clamp(0.9rem,2.2vw,1.05rem); color:var(--accent); font-style:italic; margin-bottom:1rem;">Related structural concepts:</p>
       <div class="tag-list">
         <span class="tag">Antithesis</span>
         <span class="tag">Synthesis</span>
@@ -631,43 +669,46 @@
       <p><strong>Characterisation</strong> is the organisation of the character's personality. Good characterisation portrays and conveys character through <strong>conflicts and challenges</strong> — showing how they think, feel, and evolve. Characters must be consistently portrayed.</p>
     </div>
 
-    <table class="char-table">
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Definition</th>
-          <th>Role in Story</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Static Character</strong></td>
-          <td>Does not change. Remains the same throughout the narrative.</td>
-          <td>Often a supporting figure. Their consistency highlights change in others.</td>
-        </tr>
-        <tr>
-          <td><strong>Dynamic Character</strong></td>
-          <td>Undergoes significant internal or external change over the course of the story.</td>
-          <td>Usually the protagonist. Their journey IS the story.</td>
-        </tr>
-        <tr>
-          <td><strong>Protagonist</strong></td>
-          <td>The central character the audience follows.</td>
-          <td>Faces the core conflict; embodies the premise.</td>
-        </tr>
-        <tr>
-          <td><strong>Antagonist</strong></td>
-          <td>The opposing force — not necessarily evil, just oppositional.</td>
-          <td>Creates conflict. An antithesis: a person who follows one thing but believes another.</td>
-        </tr>
-      </tbody>
-    </table>
+    <!-- Scrollable table wrapper for mobile -->
+    <div class="char-table-wrap">
+      <table class="char-table">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Definition</th>
+            <th>Role in Story</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Static Character</strong></td>
+            <td>Does not change. Remains the same throughout the narrative.</td>
+            <td>Often a supporting figure. Their consistency highlights change in others.</td>
+          </tr>
+          <tr>
+            <td><strong>Dynamic Character</strong></td>
+            <td>Undergoes significant internal or external change over the course of the story.</td>
+            <td>Usually the protagonist. Their journey IS the story.</td>
+          </tr>
+          <tr>
+            <td><strong>Protagonist</strong></td>
+            <td>The central character the audience follows.</td>
+            <td>Faces the core conflict; embodies the premise.</td>
+          </tr>
+          <tr>
+            <td><strong>Antagonist</strong></td>
+            <td>The opposing force — not necessarily evil, just oppositional.</td>
+            <td>Creates conflict. An antithesis: a person who follows one thing but believes another.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-    <div class="def-card" style="margin-top:2rem;">
+    <div class="def-card" style="margin-top:clamp(1.2rem,3vw,2rem)">
       <p><strong>Character Growth</strong> — Characters grow through conflicts and choices. They may involve <em>complex types</em> — combining static and dynamic qualities — introducing slowly increasing conflict that motivates development and disclosure of their true nature.</p>
     </div>
 
-    <div class="grid-2" style="margin-top:1.5rem;">
+    <div class="grid-2" style="margin-top:clamp(1rem,3vw,1.5rem)">
       <div class="card">
         <div class="card-icon bg-purple">🎭</div>
         <h3>Action & Motivation</h3>
@@ -688,12 +729,11 @@
     <div class="def-card">
       <p><strong>Plot vs Character</strong> — Plot is a <em>chain of events</em>, but it is always the character who drives it. Characters plotting their own story define narrative scenarios and actions. The most important thing is that characters <strong>transcend the story's premise</strong>.</p>
     </div>
-
     <div class="def-card">
       <p><strong>Pivotal Characters</strong> — Protagonist or antagonist propels the narrative forward. They are <em>fundamentally</em> bound to establish the central conflict. They are equally <strong>strong and compelling</strong> — creating a story arc that is genuinely satisfying.</p>
     </div>
 
-    <h3 style="font-family:'Playfair Display',serif; font-size:1.3rem; color:var(--ink); margin:2rem 0 1rem;">Plot & Character Relationship</h3>
+    <h3 class="subsection-title">Plot & Character Relationship</h3>
     <div class="conflict-row">
       <div class="conflict-pill">
         <div class="emoji">📌</div>
@@ -745,11 +785,11 @@
     </div>
   </section>
 
-  <!-- 7. EXAMPLE: SPIDER-MAN -->
+  <!-- 7. SPIDER-MAN -->
   <section class="section reveal" id="example">
     <p class="section-label">07 — Case Study</p>
     <h2 class="section-title">Example: Spider-Man</h2>
-    <p style="color:var(--muted); font-size:0.95rem; margin-bottom:2.5rem; line-height:1.7;">Spider-Man is the perfect illustration of all storytelling principles working together. Every concept from these notes is present in this one story.</p>
+    <p style="color:var(--muted); font-size:clamp(0.85rem,2.2vw,0.95rem); margin-bottom:clamp(1.5rem,4vw,2.5rem); line-height:1.7;">Spider-Man is the perfect illustration of all storytelling principles working together. Every concept from these notes is present in this one story.</p>
 
     <div class="timeline" id="timeline">
       <div class="tl-item">
@@ -781,7 +821,7 @@
       <p>This single line <strong>is</strong> the premise. Every event — the spider bite, Uncle Ben's death, the final fight — all lead to proving this one statement. That is how foreshadowing, conflict, character, plot, and environment work in perfect harmony.</p>
     </div>
 
-    <p style="margin-top:2rem; font-size:0.88rem; color:var(--muted); font-style:italic; text-align:center;">
+    <p style="margin-top:clamp(1.2rem,3vw,2rem); font-size:clamp(0.8rem,1.8vw,0.88rem); color:var(--muted); font-style:italic; text-align:center; padding: 0 1rem;">
       "Only those people who are <strong>familiar with mortality</strong> feel the desire to leave a mark. I feel death is a small price to pay for immortality."
     </p>
   </section>
@@ -792,37 +832,43 @@
 </footer>
 
 <script>
-  // Scroll to section
-  function scrollTo(id) {
-    document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  function scrollToSection(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const offset = document.getElementById('navTabs').offsetHeight + 8;
+    const top = el.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
   }
 
-  // Intersection Observer for reveal animations
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
+      if (entry.isIntersecting) entry.target.classList.add('visible');
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.08 });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   document.querySelectorAll('.tl-item').forEach((el, i) => {
     setTimeout(() => observer.observe(el), i * 100);
   });
 
-  // Active tab on scroll
   const sections = ['foreshadowing','conflict','premise','character','plot','environment','example'];
   const tabs = document.querySelectorAll('.tab-btn');
+
   window.addEventListener('scroll', () => {
     let current = '';
     sections.forEach(id => {
       const el = document.getElementById(id);
-      if (el && window.scrollY >= el.offsetTop - 120) current = id;
+      if (el && window.scrollY >= el.offsetTop - 140) current = id;
     });
     tabs.forEach((tab, i) => {
       tab.classList.toggle('active', sections[i] === current);
     });
+
+    // Auto-scroll active tab into view in nav
+    const activeTab = document.querySelector('.tab-btn.active');
+    if (activeTab) {
+      activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
   });
 </script>
 </body>
