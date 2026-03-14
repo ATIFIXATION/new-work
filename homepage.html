@@ -157,6 +157,11 @@
   .card:hover { background: #1a1a1a; }
   .card:hover::before { opacity: 1; }
 
+  /* Special glow for the book card */
+  .card.book-card::before {
+    background: radial-gradient(circle at 30% 50%, rgba(75,46,131,0.25), rgba(212,168,67,0.08));
+  }
+
   .card-num {
     font-size: 0.6rem;
     letter-spacing: 0.2em;
@@ -201,6 +206,12 @@
     border-radius: 999px;
     color: var(--gold);
     background: var(--tag-bg);
+  }
+
+  .tag.purple {
+    border-color: rgba(75,46,131,0.5);
+    color: #9b7fe8;
+    background: rgba(75,46,131,0.1);
   }
 
   .card-arrow {
@@ -287,6 +298,21 @@
       <span class="tag">Conflict</span>
     </div>
     <p class="card-arrow">Open notes →</p>
+  </a>
+
+  <!-- Card 3: Many Lives Many Masters -->
+  <a class="card book-card" href="souls_never_die.html">
+    <span class="card-num">03 —</span>
+    <div class="card-icon">✨</div>
+    <h2>Many Lives, Many Masters</h2>
+    <p>A psychiatrist. A patient. 86 years of past-life memories. And voices that knew things no one should know. Dr. Brian Weiss's true story that shook the world.</p>
+    <div class="card-tags">
+      <span class="tag purple">Past Lives</span>
+      <span class="tag purple">Soul</span>
+      <span class="tag">Psychology</span>
+      <span class="tag">Spirituality</span>
+    </div>
+    <p class="card-arrow">Enter the journey →</p>
   </a>
 
 </div>
