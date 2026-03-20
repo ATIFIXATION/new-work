@@ -34,7 +34,6 @@
     overflow-x: hidden;
   }
 
-  /* background grain */
   body::before {
     content: '';
     position: fixed;
@@ -45,7 +44,6 @@
     opacity: 0.6;
   }
 
-  /* glow orb */
   body::after {
     content: '';
     position: fixed;
@@ -59,7 +57,6 @@
     z-index: 0;
   }
 
-  /* ── HEADER ── */
   header {
     position: relative;
     z-index: 1;
@@ -90,10 +87,7 @@
     animation: up 0.7s 0.25s ease forwards;
   }
 
-  h1 em {
-    font-style: italic;
-    color: var(--gold);
-  }
+  h1 em { font-style: italic; color: var(--gold); }
 
   .bio {
     margin-top: 1.4rem;
@@ -115,7 +109,6 @@
     animation: up 0.7s 0.55s ease forwards;
   }
 
-  /* ── GRID ── */
   .grid {
     position: relative;
     z-index: 1;
@@ -157,9 +150,13 @@
   .card:hover { background: #1a1a1a; }
   .card:hover::before { opacity: 1; }
 
-  /* Special glow for the book card */
   .card.book-card::before {
     background: radial-gradient(circle at 30% 50%, rgba(75,46,131,0.25), rgba(212,168,67,0.08));
+  }
+
+  /* Crime & Punishment card — dark blood red glow */
+  .card.crime-card::before {
+    background: radial-gradient(circle at 30% 50%, rgba(139,0,0,0.3), rgba(40,0,0,0.15));
   }
 
   .card-num {
@@ -169,10 +166,7 @@
     opacity: 0.7;
   }
 
-  .card-icon {
-    font-size: 1.8rem;
-    line-height: 1;
-  }
+  .card-icon { font-size: 1.8rem; line-height: 1; }
 
   .card h2 {
     font-family: 'Cormorant Garamond', serif;
@@ -214,6 +208,13 @@
     background: rgba(75,46,131,0.1);
   }
 
+  /* Blood red tags for Crime & Punishment */
+  .tag.blood {
+    border-color: rgba(139,0,0,0.5);
+    color: #cc4444;
+    background: rgba(139,0,0,0.1);
+  }
+
   .card-arrow {
     font-size: 0.7rem;
     color: var(--gold);
@@ -224,12 +225,11 @@
     letter-spacing: 0.1em;
   }
 
-  .card:hover .card-arrow {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  .card:hover .card-arrow { opacity: 1; transform: translateX(0); }
 
-  /* ── FOOTER ── */
+  /* Crime card arrow in red */
+  .card.crime-card .card-arrow { color: #cc4444; }
+
   footer {
     position: relative;
     z-index: 1;
@@ -242,12 +242,7 @@
     animation: up 0.7s 0.9s ease forwards;
   }
 
-  footer a {
-    color: var(--gold);
-    text-decoration: none;
-    opacity: 0.6;
-    transition: opacity 0.2s;
-  }
+  footer a { color: var(--gold); text-decoration: none; opacity: 0.6; transition: opacity 0.2s; }
   footer a:hover { opacity: 1; }
 
   @keyframes up {
@@ -272,7 +267,7 @@
 
 <div class="grid">
 
-  <!-- Card 1: Screenplay Notes -->
+  <!-- 01: Screenplay Notes -->
   <a class="card" href="index.html">
     <span class="card-num">01 —</span>
     <div class="card-icon">🎬</div>
@@ -286,7 +281,7 @@
     <p class="card-arrow">Open notes →</p>
   </a>
 
-  <!-- Card 2: Storytelling Notes -->
+  <!-- 02: Art of Storytelling -->
   <a class="card" href="storytelling-notes.html">
     <span class="card-num">02 —</span>
     <div class="card-icon">✍️</div>
@@ -300,7 +295,7 @@
     <p class="card-arrow">Open notes →</p>
   </a>
 
-  <!-- Card 3: Many Lives Many Masters -->
+  <!-- 03: Many Lives Many Masters -->
   <a class="card book-card" href="souls_never_die.html">
     <span class="card-num">03 —</span>
     <div class="card-icon">✨</div>
@@ -313,6 +308,21 @@
       <span class="tag">Spirituality</span>
     </div>
     <p class="card-arrow">Enter the journey →</p>
+  </a>
+
+  <!-- 04: Crime & Punishment -->
+  <a class="card crime-card" href="crime_and_punishment.html">
+    <span class="card-num">04 —</span>
+    <div class="card-icon">🪓</div>
+    <h2>Crime &amp; Punishment</h2>
+    <p>A student. A theory. An axe. Dostoevsky's masterpiece dissected chapter by chapter — the psychology of guilt, the weight of conscience, and one man's long road to redemption.</p>
+    <div class="card-tags">
+      <span class="tag blood">Dostoevsky</span>
+      <span class="tag blood">Guilt</span>
+      <span class="tag blood">Redemption</span>
+      <span class="tag">Psychology</span>
+    </div>
+    <p class="card-arrow">Enter the mind →</p>
   </a>
 
 </div>
