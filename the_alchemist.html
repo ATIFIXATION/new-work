@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Alchemist | A Journey to the Soul</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0B0B0B;
+            --gold: #D4AF37;
+            --sand: #E6D3A3;
+            --accent: #8B0000;
+            --text: #F5F5F5;
+            --card-bg: rgba(10, 10, 10, 0.98);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.8;
+        }
+
+        /* Cinematic Overlays */
+        .vignette {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, transparent 15%, rgba(0,0,0,0.98) 100%);
+            pointer-events: none;
+            z-index: 9998;
+        }
+
+        .grain {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+            opacity: 0.06;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Hero Section with Pyramids */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(11,11,11,0.5), var(--bg)),
+                        url('https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(3rem, 12vw, 9rem);
+            color: var(--gold);
+            letter-spacing: 25px;
+            text-shadow: 0 0 50px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Narrative Wrapper */
+        .narrative-wrap {
+            max-width: 900px;
+            margin: 0 auto 120px;
+            padding: 80px 50px;
+            background: var(--card-bg);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            position: relative;
+            box-shadow: 0 0 100px rgba(0,0,0,1);
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .narrative-text {
+            font-size: 1.25rem;
+            color: var(--sand);
+            font-weight: 300;
+            text-align: justify;
+        }
+
+        .narrative-text strong { color: var(--gold); }
+
+        /* Chapter Cards */
+        .chronicles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            padding: 0 10% 150px;
+        }
+
+        .chapter-card {
+            background: rgba(255,255,255,0.02);
+            padding: 50px 40px;
+            border-bottom: 5px solid var(--accent);
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .chapter-card:hover {
+            background: rgba(212, 175, 55, 0.1);
+            border-bottom-color: var(--gold);
+            transform: translateY(-20px);
+        }
+
+        .chapter-card h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3.5rem; letter-spacing: 10px; }
+            .narrative-wrap { padding: 40px 20px; width: 95%; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="grain"></div>
+<div class="vignette"></div>
+
+<section class="hero">
+    <h1>THE ALCHEMIST</h1>
+    <p style="letter-spacing: 15px; color: var(--sand); opacity: 0.8;">MAKTUB — IT IS WRITTEN</p>
+</section>
+
+<section class="narrative-wrap" id="narrative">
+    <h2 style="font-family: 'Cinzel', serif; color: var(--gold); text-align: center; margin-bottom: 50px; font-size: 2.8rem; letter-spacing: 5px;">The Journey</h2>
+    <div class="narrative-text">
+        Santiago, a young shepherd living in Spain, enjoys a simple life traveling with his sheep, but he is restless inside. He keeps having the same dream about a hidden treasure near the pyramids of Egypt. Curious and unable to ignore it, he meets a mysterious king named Melchizedek, who introduces him to the idea of a <strong>Personal Legend</strong>—one’s true purpose in life. Encouraged by this, Santiago sells his sheep and sets off toward Africa, believing his journey will lead him to something greater.<br><br>
+        However, reality hits immediately when he arrives in Tangier and gets robbed of all his money. Left with nothing, he is forced to rebuild from scratch. He takes a job at a crystal shop, where he works hard and gradually transforms the struggling business using his ideas. During this time, Santiago learns patience, resilience, and the value of taking initiative. Though he earns enough to return home, something inside him pushes him to continue chasing his dream instead of settling for comfort again.<br><br>
+        He joins a caravan crossing the vast Sahara Desert, where the journey becomes more internal than physical. Along the way, he meets an Englishman who is obsessed with alchemy, and through silence and observation, Santiago begins to understand that the world communicates through signs. The desert teaches him to listen—not just with his ears, but with his heart.<br><br>
+        Eventually, he reaches the Fayoum Oasis, where his journey takes an emotional turn. He meets Fatima and falls deeply in love. For the first time, he feels tempted to stop his journey and stay. But love, as he learns, should not stop one from pursuing their destiny. Around this time, he also meets The Alchemist, a wise and powerful guide who pushes him to move forward. The Alchemist teaches him that <strong>fear is the biggest obstacle</strong> and that true understanding comes from trusting one’s heart.<br><br>
+        As Santiago continues, he faces dangerous situations that test his courage and belief. In one defining moment, he is forced to prove his connection with nature and symbolically “becomes the wind,” representing complete self-belief and alignment with the universe. This marks his transformation from a simple shepherd into someone who truly understands the language of the world.<br><br>
+        Finally, he reaches the pyramids of Egypt and begins digging for the treasure he has been seeking all along. But in a cruel twist, he is attacked by robbers. One of them laughs at him and reveals that he once had a similar dream—about a treasure hidden back in Spain under a tree. In that moment, Santiago realizes the truth: <strong>the treasure was always back where he started.</strong>
+    </div>
+</section>
+
+<div class="chronicles-grid">
+    <div class="chapter-card">
+        <h3>I. Spain</h3>
+        <p>The call of the dream under the sycamore tree. A King appears to point the way.</p>
+    </div>
+    <div class="chapter-card">
+        <h3>II. Tangier</h3>
+        <p>A betrayal in the marketplace. Rebuilding the dream through crystal and sweat.</p>
+    </div>
+    <div class="chapter-card">
+        <h3>III. Sahara</h3>
+        <p>The caravan across the sand. Learning that the soul of the world is a single language.</p>
+    </div>
+    <div class="chapter-card">
+        <h3>IV. Oasis</h3>
+        <p>Finding Fatima. Discovering that love is the catalyst for the Personal Legend.</p>
+    </div>
+    <div class="chapter-card">
+        <h3>V. The Wind</h3>
+        <p>Faced with death, Santiago speaks to the desert, the wind, and the sun.</p>
+    </div>
+    <div class="chapter-card">
+        <h3>VI. Egypt</h3>
+        <p>The Pyramids at last. The treasure was where the heart was all along.</p>
+    </div>
+</div>
+
+<footer style="text-align: center; padding: 100px 0; opacity: 0.3; letter-spacing: 8px;">
+    THE SOUL OF THE WORLD — 2026
+</footer>
+
+<script>
+    lucide.createIcons();
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Initial Animations
+    window.addEventListener('load', () => {
+        gsap.from(".hero h1", { opacity: 0, y: 100, duration: 2, ease: "power4.out" });
+        gsap.from(".hero p", { opacity: 0, duration: 2, delay: 0.5 });
+
+        // Scroll Reveal for Narrative
+        gsap.to("#narrative", {
+            scrollTrigger: {
+                trigger: "#narrative",
+                start: "top 85%"
+            },
+            opacity: 1,
+            y: 0,
+            duration: 1.5,
+            ease: "power3.out"
+        });
+
+        // Staggered Chapter Cards
+        gsap.to(".chapter-card", {
+            scrollTrigger: {
+                trigger: ".chronicles-grid",
+                start: "top 75%"
+            },
+            opacity: 1,
+            y: 0,
+            stagger: 0.2,
+            duration: 1.2,
+            ease: "power3.out"
+        });
+    });
+</script>
+</body>
+</html>
