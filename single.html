@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ohh Yes I Am Single — Atif Khan</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #0a0a0a;
+  --red: #e63030;
+  --white: #f5f5f5;
+  --grey: #888;
+}
+
+/* BODY */
+body {
+  background: radial-gradient(circle at 20% 30%, rgba(230,48,48,0.2), transparent 40%),
+              radial-gradient(circle at 80% 70%, rgba(230,48,48,0.15), transparent 40%),
+              #0a0a0a;
+  color: var(--white);
+  font-family: 'DM Mono', monospace;
+  overflow-x: hidden;
+}
+
+/* GLOW */
+body::before {
+  content: "";
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(230,48,48,0.3), transparent 70%);
+  top: -100px;
+  left: -100px;
+  filter: blur(120px);
+  animation: floatGlow 10s infinite alternate ease-in-out;
+  z-index: -1;
+}
+
+@keyframes floatGlow {
+  0% { transform: translate(0,0); }
+  100% { transform: translate(200px,150px); }
+}
+
+/* SECTION */
+section {
+  min-height: 100vh;
+  padding: 80px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* HERO */
+.hero {
+  background: linear-gradient(180deg, #e63030 0%, #0a0a0a 100%);
+}
+
+.hero h1 {
+  font-family: 'Bebas Neue';
+  font-size: 90px;
+  line-height: 1;
+  animation: glitch 2s infinite;
+}
+
+.hero span {
+  background: white;
+  color: black;
+  padding: 0 10px;
+}
+
+.tagline {
+  margin-top: 10px;
+  background: white;
+  color: black;
+  display: inline-block;
+  padding: 5px 12px;
+}
+
+.sub {
+  margin-top: 20px;
+  color: var(--grey);
+  font-size: 14px;
+}
+
+/* GLITCH */
+@keyframes glitch {
+  0% { text-shadow: 2px 2px red; }
+  25% { text-shadow: -2px -2px white; }
+  50% { text-shadow: 2px -2px red; }
+  75% { text-shadow: -2px 2px white; }
+  100% { text-shadow: 2px 2px red; }
+}
+
+/* CONTENT */
+.content {
+  max-width: 700px;
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+/* LIST */
+ul {
+  list-style: none;
+  text-align: left;
+}
+
+ul li {
+  margin: 10px 0;
+  color: var(--grey);
+}
+
+/* QUOTE */
+.quote {
+  font-family: 'Bebas Neue';
+  font-size: 60px;
+}
+
+.quote span {
+  color: var(--red);
+}
+
+/* AUTHOR */
+.author h2 {
+  font-family: 'Bebas Neue';
+  font-size: 40px;
+}
+
+/* BUTTON */
+.cta button {
+  margin-top: 30px;
+  padding: 12px 30px;
+  border: 2px solid var(--red);
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta button::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 100%;
+  background: var(--red);
+  left: 0;
+  top: 0;
+  transition: 0.3s;
+  z-index: -1;
+}
+
+.cta button:hover::after {
+  width: 100%;
+}
+
+.cta button:hover {
+  color: black;
+}
+
+/* LINK BUTTON */
+.link-btn {
+  display: inline-block;
+  margin: 15px 0;
+  padding: 12px 24px;
+  border: 1px solid var(--red);
+  text-decoration: none;
+  color: white;
+  transition: 0.3s;
+}
+
+.link-btn:hover {
+  background: var(--red);
+  color: black;
+}
+
+/* FADE */
+.fade {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.8s;
+}
+
+.fade.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+
+  section {
+    padding: 60px 15px;
+  }
+
+  .hero h1 {
+    font-size: 42px;
+  }
+
+  .tagline {
+    font-size: 14px;
+  }
+
+  .content {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .quote {
+    font-size: 30px;
+  }
+
+  .cta button {
+    width: 100%;
+    padding: 14px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero fade">
+  <div>
+    <h1>
+      OHH YES,<br>
+      I AM <span>SINGLE.</span>
+    </h1>
+    <p class="tagline">and so is my girlfriend.</p>
+    <p class="sub">A story that hurts a little… and jokes about it anyway.</p>
+  </div>
+</section>
+
+<!-- SUMMARY -->
+<section class="fade">
+  <div class="content">
+    <p>This is not a tragic love story.</p><br>
+    <p>It just behaves like one… sometimes.</p><br>
+    <p>You meet someone. You like them. You build small routines.</p><br>
+    <p>And then one day… it slips.</p><br>
+    <p>Not loudly. Not dramatically. Just silence.</p><br>
+    <p>The book doesn’t cry about it. It laughs.</p><br>
+    <p>But the kind of laugh that knows something broke.</p>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="fade">
+  <div class="content">
+    <p>Read this if—</p><br>
+    <ul>
+      <li>• you check your phone for someone who’s not coming back</li>
+      <li>• you replay conversations in your head</li>
+      <li>• nights feel heavier than they should</li>
+    </ul>
+    <br><br>
+    <p>This book doesn’t fix you.</p><br>
+    <p>It makes sense of you.</p>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="fade">
+  <div class="quote">
+    YOU DON’T MISS THEM.<br><br>
+    YOU MISS <span>WHO YOU WERE</span><br>
+    WITH THEM.
+  </div>
+</section>
+
+<!-- AUTHOR -->
+<section class="fade author">
+  <div>
+    <p>Written by</p><br>
+    <h2>DURJOY DATTA<br>& NEETI RUSTAGI</h2><br>
+    <p>They don’t write perfect love.<br>They write what actually happens.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="fade cta">
+  <div class="content">
+    <p>Not every story ends.</p><br>
+    <p>Some just… stop.</p><br>
+    <p>And maybe that’s where yours begins.</p>
+    <button>READ. FEEL. UNDERSTAND.</button>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="fade">
+  <div class="content">
+    <p>You won’t notice it at first.</p><br>
+    <p>The way you stop checking your phone. The way their name feels lighter.</p><br>
+    <p>Not gone. Just quieter.</p><br>
+    <p>And one day… it won’t hurt the same.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<section class="fade">
+  <div class="content">
+
+    <p style="color: var(--grey);">if you’re still thinking about it…</p>
+
+    <!-- WORKING AMAZON SEARCH LINK -->
+    <a href="https://www.amazon.in/s?k=ohh+yes+i+am+single+durjoy+datta" target="_blank" class="link-btn">
+      FIND THE BOOK
+    </a>
+
+    <br><br>
+
+    <p style="font-size:13px; color: var(--grey);">follow the author →</p>
+
+    <!-- FIXED INSTAGRAM LINK -->
+    <a href="https://instagram.com/durjoydatta" target="_blank"
+       style="color:white; text-decoration:none; border-bottom:1px solid var(--grey);">
+      @durjoydatta
+    </a>
+
+    <br><br><br>
+
+    <p style="font-size:12px; color: var(--grey);">curated by Atif Khan</p>
+
+  </div>
+</section>
+
+<script>
+
+/* SCROLL ANIMATION */
+const faders = document.querySelectorAll('.fade');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+  });
+});
+
+faders.forEach(el => observer.observe(el));
+
+</script>
+
+</body>
+</html>
